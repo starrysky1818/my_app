@@ -19,19 +19,23 @@ class MyHomePage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: 0,
-          fixedColor: Colors.green,
+          fixedColor: Colors.blueGrey,
           items: const [
             BottomNavigationBarItem(
               label: "Home",
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home, color: Colors.grey,),
             ),
             BottomNavigationBarItem(
               label: "Search",
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.search, color: Colors.white),
             ),
             BottomNavigationBarItem(
-              label: "Profile",
-              icon: Icon(Icons.account_circle),
+              label: "Notice",
+              icon: Icon(Icons.notifications, color: Colors.white),
+            ),
+            BottomNavigationBarItem(
+              label: "Friends",
+              icon: Icon(Icons.person, color: Colors.white),
             ),
           ],
           onTap: (int indexOfItem) {}),
