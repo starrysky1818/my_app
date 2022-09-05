@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Page/homePage.dart';
+import 'package:my_app/Bottom.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(title: 'Flutter Scaffold Example'),
+      home: BottomNavigationWidget(),
     );
   }
 }
