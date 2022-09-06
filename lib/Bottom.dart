@@ -32,40 +32,38 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     return Scaffold(
       body: list[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black45,
+        backgroundColor: const Color.fromRGBO(41, 41, 61,1),
         type: BottomNavigationBarType.fixed,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: _BottomNavigationColor,
             ),
-            label: 'Home',
+         label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
-              color: _BottomNavigationColor,
+              Icons.brightness_3,
             ),
-            label: 'person',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: _BottomNavigationColor,
-            ),
-            label: 'search',
+      label: 'Summary',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.notifications,
-              color: _BottomNavigationColor,
             ),
-            label: 'Summary',
+label: 'Notice',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+            ),
+            label: 'Friends',
           ),
         ],
         currentIndex: _currentIndex,
         // type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white70,
+        unselectedItemColor: _BottomNavigationColor,
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
