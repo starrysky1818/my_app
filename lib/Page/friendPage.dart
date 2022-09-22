@@ -41,7 +41,7 @@ class MyFriends extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('images/setting1.png'),
+                image: AssetImage('images/friends.png'),
               ),
             ),
           ),
