@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/homePage.dart';
+import 'package:my_app/Page/notifications.dart';
 
 class MySetting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height * 0.3;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +51,7 @@ class MySetting extends StatelessWidget {
               child: new Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 30.0),
+                padding: new EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(20,47,67,1),
                     border: Border.all(color: Color.fromRGBO(39,69,92,1)),
@@ -74,12 +74,15 @@ class MySetting extends StatelessWidget {
           ),
           GestureDetector(
               onTap: (){
-                print("Container clicked");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyNotification()),
+                );
               },
               child: new Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 30.0),
+                padding: new EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(20,47,67,1),
                     border: Border.all(color: Color.fromRGBO(39,69,92,1)),
@@ -107,7 +110,7 @@ class MySetting extends StatelessWidget {
               child: new Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 30.0),
+                padding: new EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(20,47,67,1),
                     border: Border.all(color: Color.fromRGBO(39,69,92,1)),
@@ -135,7 +138,7 @@ class MySetting extends StatelessWidget {
               child: new Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 30.0),
+                padding: new EdgeInsets.fromLTRB(20.0, 13, 20.0, 13),
                 decoration: BoxDecoration(
                     color: Color.fromRGBO(20,47,67,1),
                     border: Border.all(color: Color.fromRGBO(39,69,92,1)),
