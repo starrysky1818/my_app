@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/setting.dart';
 
-class MyNotification extends StatelessWidget {
+class MyBrightness extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -38,13 +38,13 @@ class MyNotification extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('images/notifications.png'),
+                image: AssetImage('images/brightness.png'),
               ),
             ),
           ),
           Container(
               width: screenWidth,
-              height: screenWidth * 0.15,
+              height: screenWidth * 0.3,
               margin: const EdgeInsets.all(10),
               padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
               decoration: BoxDecoration(
@@ -52,8 +52,7 @@ class MyNotification extends StatelessWidget {
                   border: Border.all(color: Color.fromRGBO(39,69,92,1)),
                   borderRadius: BorderRadius.all(Radius.circular(100))
               ),
-              child: SwitchScreen(
-              )
+              child: SwitchScreen()
           ),
         ],
       ),
@@ -69,7 +68,8 @@ class SwitchScreen extends StatefulWidget {
 
 class SwitchClass extends State {
   bool isSwitched = false;
-  var textValue = 'Send Sleep Notification';
+  var textValue1 = 'Notification';
+  var textValue2 = 'Phone screen will dim down 30mins before your pre-set sleep time.';
 
   void toggleSwitch(bool value) {
 
@@ -77,14 +77,16 @@ class SwitchClass extends State {
     {
       setState(() {
         isSwitched = true;
-        textValue = 'Send Sleep Notification';
+        textValue1 = 'Notification';
+        textValue2 = 'Phone screen will dim down 30mins before your pre-set sleep time.';
       });
     }
     else
     {
       setState(() {
         isSwitched = false;
-        textValue = 'Send Sleep Notification';
+        textValue1 = 'Notification';
+        textValue2 = 'Phone screen will dim down 30mins before your pre-set sleep time.';
       });
     }
   }
@@ -92,9 +94,10 @@ class SwitchClass extends State {
   Widget build(BuildContext context) {
     // return Column(
     //     crossAxisAlignment: CrossAxisAlignment.stretch,
-    return Row(
+    return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children:[ Text('$textValue', style: TextStyle(color: Colors.white,fontSize: 20),),
+        children:[ Text('$textValue1', style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold)),
+          Text('$textValue2', style: TextStyle(color: Colors.white,fontSize: 15,height: 2)),
           Transform.scale(
               scale: 2,
               child: Switch(

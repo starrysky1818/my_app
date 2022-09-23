@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Page/brightness.dart';
 import 'package:my_app/Page/homePage.dart';
 import 'package:my_app/Page/notifications.dart';
 
@@ -105,7 +106,10 @@ class MySetting extends StatelessWidget {
           ),
           GestureDetector(
               onTap: (){
-                print("Container clicked");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyBrightness()),
+                );
               },
               child: new Container(
                 width: screenWidth,
