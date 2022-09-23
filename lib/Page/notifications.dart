@@ -90,21 +90,22 @@ class SwitchClass extends State {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-
-        children:[ Transform.scale(
-            scale: 2,
-            child: Switch(
-              onChanged: toggleSwitch,
-              value: isSwitched,
-              activeColor: Colors.white,
-              activeTrackColor: Colors.blue,
-              inactiveThumbColor: Colors.white,
-              inactiveTrackColor: Colors.grey,
-            )
-        ),
-          Text('$textValue', style: TextStyle(color: Colors.white,fontSize: 20),)
+    // return Column(
+    //     crossAxisAlignment: CrossAxisAlignment.stretch,
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:[ Text('$textValue', style: TextStyle(color: Colors.white,fontSize: 20),),
+          Transform.scale(
+              scale: 2,
+              child: Switch(
+                onChanged: toggleSwitch,
+                value: isSwitched,
+                activeColor: Colors.white,
+                activeTrackColor: Colors.blue,
+                inactiveThumbColor: Colors.white,
+                inactiveTrackColor: Colors.grey,
+              )
+          ),
         ]);
   }
 }
