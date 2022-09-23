@@ -21,7 +21,7 @@ class _BarChartGraphState extends State<BarChartGraph> {
   void initState() {
     super.initState();
     _barChartList = [
-      BarChartModel(month: "Oct", sleepDuration: 7, day:"",
+      BarChartModel(month: "", sleepDuration: 7, day:"",
           color: charts.ColorUtil.fromDartColor
         (Colors.white70)),
     ];
@@ -29,6 +29,7 @@ class _BarChartGraphState extends State<BarChartGraph> {
 
   @override
   Widget build(BuildContext context) {
+
     List<charts.Series<BarChartModel, String>> series = [
       charts.Series(
           id: "Sleep Statistics",
@@ -47,16 +48,16 @@ class _BarChartGraphState extends State<BarChartGraph> {
         ? ListView.separated(
       physics: NeverScrollableScrollPhysics(),
       separatorBuilder: (context, index) => Divider(
-        color: Colors.white,
-        height: 5,
+        color: Colors.white24,
+        height: 3,
       ),
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       itemCount: _barChartList.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          height: MediaQuery.of(context).size.height/ 2.3,
-          padding: EdgeInsets.all(10),
+          height: MediaQuery.of(context).size.height/ 4,
+          padding: EdgeInsets.all(0),
           child: Column(
             children: [
               Row(
@@ -64,12 +65,33 @@ class _BarChartGraphState extends State<BarChartGraph> {
                 children: [
                   Text(_barChartList[index].month,
                       style: TextStyle(
-                          color: Colors.black, fontSize: 22,
+                          color: Colors.white, fontSize: 22,
                           fontWeight: FontWeight.bold)
                   ),
                 ],
               ),
-              Expanded( child: charts.BarChart(series, animate: true)),
+              Expanded( child: charts.BarChart(series, animate: true,
+                domainAxis: new charts.OrdinalAxisSpec(
+                    renderSpec: new charts.SmallTickRendererSpec(
+                      // Tick and Label styling here.
+                        labelStyle: new charts.TextStyleSpec(
+                            fontSize: 14, // size in Pts.
+                            color: charts.MaterialPalette.white),
+                        // Change the line colors to match text color.
+                        lineStyle: new charts.LineStyleSpec(
+                            color: charts.MaterialPalette.white))),
+                /// Assign a custom style for the measure axis.
+                primaryMeasureAxis: new charts.NumericAxisSpec(
+                    renderSpec: new charts.GridlineRendererSpec(
+                      // Tick and Label styling here.
+                        labelStyle: new charts.TextStyleSpec(
+                            fontSize: 14, // size in Pts.
+                            color: charts.MaterialPalette.white),
+                        // Change the line colors to match text color.
+                        lineStyle: new charts.LineStyleSpec(
+                            color: charts.MaterialPalette.white))),
+              ),
+              ),
             ],
           ),
         );
