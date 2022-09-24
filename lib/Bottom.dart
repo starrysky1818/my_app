@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/homePage.dart';
-//import 'package:flutter_application_1/pages/email_screen.dart';
-//import 'package:flutter_application_1/pages/home_screen.dart';
-//import 'package:flutter_application_1/pages/pages_screen.dart';
+import 'package:my_app/Page/summaryPage.dart';
+import 'package:my_app/Page/notifications.dart';
+import 'package:my_app/Page/setting.dart';
+
 
 class BottomNavigationWidget extends StatefulWidget {
   _BottomNavigationWidgetState createState() => _BottomNavigationWidgetState();
@@ -19,10 +20,10 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   @override
   void initState() {
     list
-      ..add(MyHomePage());
-      //..add(EmailScreen())
-      //..add(PageScreen())
-      //..add(AirplayScreen());
+      ..add(MyHomePage())
+      ..add(MySummary())
+      ..add(MyNotification())
+      ..add(MySetting());
 
     super.initState();
   }
@@ -32,6 +33,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     return Scaffold(
       body: list[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+
         backgroundColor: const Color.fromRGBO(41, 41, 61,1),
         type: BottomNavigationBarType.fixed,
         items: const [
@@ -57,7 +59,7 @@ label: 'Notice',
             icon: Icon(
               Icons.person,
             ),
-            label: 'Friends',
+            label: 'Setting',
           ),
         ],
         currentIndex: _currentIndex,
