@@ -206,7 +206,6 @@ class _searchFriends extends State<searchFriends> {
   GlobalKey formKey = new GlobalKey<FormState>();
   late String userAccount;
 
-
   Widget buildForm() {
     return Form(
       //set globalKey for getting FormState
@@ -240,11 +239,6 @@ class _searchFriends extends State<searchFriends> {
 
             ),
             //cursorRadius: BorderRadius.circular(30),
-            //color: Colors.white,
-            //style: const TextStyle(
-              //color: Colors.white,
-              //fontSize: 18.0,
-            //),
             onChanged: (value) {
               filterSearchResults(value);
             },
