@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Page/brightness.dart';
 import 'package:my_app/Page/homePage.dart';
 import 'package:my_app/Page/notifications.dart';
+import 'package:my_app/Page/timeSetting.dart';
 
 class MySetting extends StatelessWidget {
 
@@ -47,7 +48,10 @@ class MySetting extends StatelessWidget {
           ),
           GestureDetector(
               onTap: (){
-                print("Container clicked");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyTimeSetting()),
+                );
               },
               child: new Container(
                 width: screenWidth,
