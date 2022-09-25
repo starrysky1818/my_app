@@ -237,7 +237,6 @@ class _searchFriends extends State<searchFriends> {
                 color: Colors.white24,
               ),
             ),
-            //cursorRadius: BorderRadius.circular(30),
             onChanged: (value) {
               filterSearchResults(value);
             },
