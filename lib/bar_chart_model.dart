@@ -14,48 +14,48 @@ class BarChartModel {
     required this.color,}
       );
 }
-
-final List<BarChartModel> data = [
-  BarChartModel(
-    day: "Mon",
-    sleepDuration: 6.5,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-  BarChartModel(
-    day: "Tues",
-    sleepDuration: 7,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-  BarChartModel(
-    day: "Wed",
-    sleepDuration: 8,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-  BarChartModel(
-    day: "Thurs",
-    sleepDuration: 7.5,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-  BarChartModel(
-    day: "Fri",
-    sleepDuration: 6,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-  BarChartModel(
-    day: "Sat",
-    sleepDuration: 7,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-  BarChartModel(
-    day: "Sun",
-    sleepDuration: 8,
-    color: charts.ColorUtil.fromDartColor
-      (Colors.white70), month: '',
-  ),
-];
+//
+// final List<BarChartModel> data = [
+//   BarChartModel(
+//     day: "Mon",
+//     sleepDuration: 6.5,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+//   BarChartModel(
+//     day: "Tues",
+//     sleepDuration: 7,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+//   BarChartModel(
+//     day: "Wed",
+//     sleepDuration: 8,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+//   BarChartModel(
+//     day: "Thurs",
+//     sleepDuration: 7.5,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+//   BarChartModel(
+//     day: "Fri",
+//     sleepDuration: 6,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+//   BarChartModel(
+//     day: "Sat",
+//     sleepDuration: 7,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+//   BarChartModel(
+//     day: "Sun",
+//     sleepDuration: 8,
+//     color: charts.ColorUtil.fromDartColor
+//       (Colors.white70), month: '',
+//   ),
+// ];

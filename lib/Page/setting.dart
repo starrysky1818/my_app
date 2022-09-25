@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/brightness.dart';
-import 'package:my_app/Page/homePage.dart';
+import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/notifications.dart';
 import 'package:my_app/Page/timeSetting.dart';
 
@@ -17,7 +17,7 @@ class MySetting extends StatelessWidget {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
+                  MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
                 );
               },
               child: new Container(
