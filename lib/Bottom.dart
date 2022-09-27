@@ -1,9 +1,10 @@
 //import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:my_app/Page/Profile/accountPage.dart';
+import 'package:my_app/Page/friendPage.dart';
 import 'package:my_app/Page/homePage.dart';
 import 'package:my_app/Page/summaryPage.dart';
-import 'package:my_app/Page/notifications.dart';
 import 'package:my_app/Page/setting.dart';
 
 
@@ -21,9 +22,10 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   void initState() {
     list
       ..add(MyHomePage())
+      ..add(MySetting())
+      ..add(MyFriends())
       ..add(MySummary())
-      ..add(MyNotification())
-      ..add(MySetting());
+      ..add(MyAccount());
 
     super.initState();
   }
@@ -45,21 +47,27 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.brightness_3,
+              Icons.settings,
             ),
-      label: 'Summary',
+      label: 'Settings',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.notifications,
+              Icons.people,
             ),
-label: 'Notice',
+label: 'Friends',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person,
+              Icons.graphic_eq,
             ),
-            label: 'Setting',
+            label: 'Summary',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.manage_accounts,
+            ),
+            label: 'My',
           ),
         ],
         currentIndex: _currentIndex,
