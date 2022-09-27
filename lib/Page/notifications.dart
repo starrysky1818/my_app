@@ -44,7 +44,7 @@ class MyNotification extends StatelessWidget {
           ),
           Container(
               width: screenWidth,
-              height: screenWidth * 0.15,
+              height: screenWidth * 0.2,
               margin: const EdgeInsets.all(10),
               padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
               decoration: BoxDecoration(
