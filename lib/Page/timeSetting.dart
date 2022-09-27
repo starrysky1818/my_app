@@ -35,7 +35,7 @@ class MyTimeSetting extends StatelessWidget {
           ),
           Container(
             width: screenWidth,
-            height: screenWidth * 0.42,
+            height: screenWidth * 0.35,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
@@ -45,15 +45,6 @@ class MyTimeSetting extends StatelessWidget {
             ),
           ),
           Container(
-              width: screenWidth,
-              height: screenWidth * 0.4,
-              margin: const EdgeInsets.all(10),
-              padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(20,47,67,1),
-                  border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                  borderRadius: BorderRadius.all(Radius.circular(100))
-              ),
               child: MyClockPage(
               )
           ),
@@ -73,141 +64,208 @@ class _MyClockPageState extends State<MyClockPage> {
 
   // creating text ediiting controller to take hour
   // and minute as input
-  TextEditingController hourController = TextEditingController();
-  TextEditingController minuteController = TextEditingController();
+  TextEditingController hourController1 = TextEditingController();
+  TextEditingController minuteController2 = TextEditingController();
+  TextEditingController hourController3 = TextEditingController();
+  TextEditingController minuteController4 = TextEditingController();
+  int value1 = 0;
+  int value2 = 0;
+  int value3 = 0;
+  int value4 = 0;
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Center(
-          child: Column(children: <Widget>[
-            SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 40,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(11)),
-                  child: Center(
-                    child: TextField(
-                      controller: hourController,
-                      keyboardType: TextInputType.number,
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              // start sleep container
+              Container(
+                width: screenWidth,
+                height: screenWidth * 0.3,
+                margin: const EdgeInsets.all(10),
+                padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(20,47,67,1),
+                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
+                    borderRadius: BorderRadius.all(Radius.circular(100))
+                ),
+                child: Column(children: <Widget>[
+                  SizedBox(height: 5),
+                  Container(
+                    child: Text(
+                      'Start Sleep',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(width: 20),
-                Container(
-                  height: 40,
-                  width: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(11)),
-                  child: Center(
-                    child: TextField(
-                      controller: minuteController,
-                      keyboardType: TextInputType.number,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Container(
-              margin: const EdgeInsets.all(25),
-              child: TextButton(
-                child: const Text(
-                  'Create alarm',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                onPressed: () {
-                  int hour;
-                  int minutes;
-                  hour = int.parse(hourController.text);
-                  minutes = int.parse(minuteController.text);
 
-                  // creating alarm after converting hour
-                  // and minute into integer
-                  FlutterAlarmClock.createAlarm(hour, minutes);
-                },
+                  SizedBox(height:15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white12,
+                            borderRadius: BorderRadius.circular(11)),
+                        child: Center(
+                          child: TextField(
+                            onChanged: (hour1) {
+                              value1 = int.parse(hour1);
+                            },
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30),
+                            textAlign: TextAlign.center,
+                            controller: hourController1,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        ':',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        height: 45,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white12,
+                            borderRadius: BorderRadius.circular(11)),
+                        child: Center(
+                          child: TextField(
+                            onChanged: (min2) {
+                              value2 = int.parse(min2);
+                            },
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,),
+                            textAlign: TextAlign.center,
+                            controller: minuteController2,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
               ),
-            ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     // show alarm
-            //     FlutterAlarmClock.showAlarms();
-            //   },
-            //   child: const Text(
-            //     'Show Alarms',
-            //     style: TextStyle(fontSize: 20.0),
-            //   ),
-            // ),
-          ]));
+              SizedBox(height: 10),
+
+              // Wake up container
+              Container(
+                width: screenWidth,
+                height: screenWidth * 0.3,
+                margin: const EdgeInsets.all(10),
+                padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(20,47,67,1),
+                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
+                    borderRadius: BorderRadius.all(Radius.circular(100))
+                ),
+                child: Column(children: <Widget>[
+                  SizedBox(height: 5),
+                  Container(
+                    child: Text(
+                      'Wake Up',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
+                  SizedBox(height:15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 45,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white12,
+                            borderRadius: BorderRadius.circular(11)),
+                        child: Center(
+                          child: TextField(
+                            onChanged: (hour3) {
+                              value3 = int.parse(hour3);
+                            },
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30),
+                            textAlign: TextAlign.center,
+                            controller: hourController3,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        ':',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        height: 45,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: Colors.white12,
+                            borderRadius: BorderRadius.circular(11)),
+                        child: Center(
+                          child: TextField(
+                            onChanged: (min4) {
+                              value4 = int.parse(min4);
+                            },
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,),
+                            textAlign: TextAlign.center,
+                            controller: minuteController4,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ]),
+              ),
+              SizedBox(height: 13),
+              Container(
+              child: TextButton(
+                onPressed: () {
+                  FlutterAlarmClock.createAlarm(value1, value2);
+                  FlutterAlarmClock.createAlarm(value3, value4);
+                },
+                child: Text(
+                  "Confirm",
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.white60,
+                ),
+                ),
+              ),
+
+          )
+            ],
+          ),
+    );
   }
 }
-
-// class MyApp extends StatefulWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     int value1 = 0;
-//     int value2 = 0;
-//     return Center(
-//             child: Column(children: <Widget>[
-//               Container(
-//                 margin: const EdgeInsets.all(25),
-//                   child: Row (
-//                         children: <Widget>[
-//                           SizedBox(width: 5),
-//                       TextField(
-//                         obscureText: true,
-//                           decoration: InputDecoration(
-//                             border: OutlineInputBorder(),
-//                             labelText: 'hi',
-//                           ),
-//                           // clipBehavior: Clip.none,
-//                           cursorColor: Colors.cyan,
-//                           onChanged: (value) {
-//                             value1 = int.parse(value);
-//                             print("The value entered is : $value");
-//                           }
-//                           ),
-//                           SizedBox(width: 5),
-//
-//                        TextField(
-//                               onChanged: (value) {
-//                                 value2 = int.parse(value);
-//                                 print("The value entered is : $value");
-//                               }
-//                          ),
-//                           SizedBox(width: 5),
-//                     ]),
-//                 ),
-//               Container(
-//                 margin: const EdgeInsets.all(25),
-//                 child: TextButton(
-//                   child: const Text(
-//                     'Show alarms',
-//                     style: TextStyle(fontSize: 20.0),
-//                   ),
-//                   onPressed: () {
-//                     FlutterAlarmClock.showAlarms();
-//                   },
-//                 ),
-//               ),
-//             ]
-//             )
-//       );
-//   }
-// }
