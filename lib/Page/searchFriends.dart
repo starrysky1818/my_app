@@ -1,6 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:my_app/Page/homePage.dart';
-//
 // class MyFriends extends StatelessWidget {
 //
 //   @override
@@ -112,7 +109,6 @@
 // }
 
 import 'package:flutter/material.dart';
-
 import 'friendPage.dart';
 
 class searchFriends extends StatefulWidget {
@@ -137,7 +133,7 @@ class _searchFriends extends State<searchFriends> {
                 },
                 child: Container(
                   width: screenWidth,
-                  padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+                  padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 10.0),
                   color: const Color.fromRGBO(10,39,59,1),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -146,21 +142,32 @@ class _searchFriends extends State<searchFriends> {
                           Icons.chevron_left,
                           color: Colors.white
                       ),
+                      SizedBox(width:10),
+                      Text(
+                        "Add friends",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
+                      ),
                     ],
                   ),
                 )
             ),
+            const Divider(
+              color: Colors.white12,
+              indent: 30,
+              endIndent: 30,
+            ),
             Container(
               width: screenWidth,
-              margin: const EdgeInsets.all(10),
-              padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 30.0),
-              decoration: BoxDecoration(
-                  color: const Color.fromRGBO(20,47,67,1),
-                  border: Border.all(color: const Color.fromRGBO(39,69,92,1)),
-                  borderRadius: const BorderRadius.all(Radius.circular(20))
+              margin: const EdgeInsets.fromLTRB(20,20,20,10),
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 5.0),
+              decoration: const BoxDecoration(
+                  color: Color.fromRGBO(20,47,67,1),
+                  borderRadius: BorderRadius.all(Radius.circular(50))
               ),
               alignment: Alignment.center,
-              //padding: EdgeInsets.only(left:30.0,right: 30.0),
               child: new Container(
                 child: buildForm(),
               ),
@@ -172,10 +179,10 @@ class _searchFriends extends State<searchFriends> {
   }
 
   List<User> users = [
-    User(name: "Hari Prasad Chaudhary", accNumber: 12345),
-    User(name:"David Mars", accNumber: 23456),
-    User(name:"Aurn Thapa", accNumber: 34567),
-    User(name: "John Bal", accNumber: 45678)
+    User(name: "Hari Prasad Chaudhary", accNumber: 12345, password: "ss123"),
+    User(name:"David Mars", accNumber: 23456, password: "ss123"),
+    User(name:"Aurn Thapa", accNumber: 34567, password: "ss123"),
+    User(name: "John Bal", accNumber: 45678, password: "ss123")
   ];
   List<User> items = <User>[];
 
@@ -197,7 +204,6 @@ class _searchFriends extends State<searchFriends> {
     } else {
       setState(() {
         items.clear();
-        items.addAll(users);
       });
     }
   }
@@ -214,27 +220,29 @@ class _searchFriends extends State<searchFriends> {
       child: Column(
         children: <Widget>[
           TextFormField(
-            autofocus: false,
+            //autofocus: false,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             controller: uAccController,
+            style: const TextStyle(color: Colors.white, fontSize: 18),
             decoration: const InputDecoration(
-              // enabledBorder: OutlineInputBorder(
-              //   borderRadius: BorderRadius.circular(5),
-              //   borderSide: BorderSide(
-              //     color: Colors.,
-              //     width: 1.0,
-              //   ),
-              // ),
+              contentPadding: EdgeInsets.all(12),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(50)),
+                borderSide: BorderSide(
+                    color: Color.fromRGBO(39,69,92,1)
+                )
+              ),
               labelText: "Search Username",
               labelStyle: TextStyle(
                 color: Colors.white70,
+                fontSize: 20,
               ),
               hintText: "Alan",
               hintStyle: TextStyle(color: Colors.white24),
               icon: Icon(
                 Icons.search,
-                color: Colors.white24,
+                color: Colors.white70,
               ),
             ),
             onChanged: (value) {
@@ -242,17 +250,30 @@ class _searchFriends extends State<searchFriends> {
             },
           ),
 
-          //
+          //searched results
           Padding(
             padding: const EdgeInsets.only(top: 28.0),
             child: Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: items.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(items[index].name),
-                    subtitle: Text('${items[index].accNumber}'),
+                    title: Text(
+                        items[index].name,
+                      style: const TextStyle(color: Colors.lightBlue),
+                    ),
+                    subtitle: Text(
+                        '${items[index].accNumber}',
+                      style: const TextStyle(color: Colors.lightBlueAccent),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    color: Colors.white12,
+                    indent: 10,
+                    endIndent: 10,
                   );
                 },
               ),
