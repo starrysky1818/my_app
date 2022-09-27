@@ -242,6 +242,7 @@ class _searchFriends extends State<searchFriends> {
             },
           ),
 
+          //
           Padding(
             padding: const EdgeInsets.only(top: 28.0),
             child: Expanded(
