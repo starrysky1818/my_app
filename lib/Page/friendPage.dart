@@ -24,7 +24,7 @@ class MyFriends extends StatelessWidget {
                        ListTile(
                          title: Text(
                              friends[index].name,
-                           style: TextStyle(color: Colors.white, fontSize: 18.0),
+                           style: const TextStyle(color: Colors.white, fontSize: 18.0),
                          ),
                          trailing: Wrap(
                            children :<Widget> [
@@ -62,7 +62,7 @@ class MyFriends extends StatelessWidget {
                        );
                  },
                  separatorBuilder: (context, index) {
-                   return Divider(
+                   return const Divider(
                      color: Colors.white12,
                      indent: 10,
                      endIndent: 10,
@@ -175,13 +175,22 @@ class User{
 
   User({required this.name, required this.accNumber, required this.password});
 
-  void visit(String name, String password) {
+  void visit(User user) {
     for (var item in users) {
-      if((item.name == name) && (item.password == password)) {
+      if(item == user) {
         return item.getPlanet();
       }
     }
   }
 
   void getPlanet() {}
+  void sendMessage() {}
+
+  void message(User user) {
+    for (var item in users) {
+      if(item == user) {
+        return item.sendMessage();
+      }
+    }
+  }
 }
