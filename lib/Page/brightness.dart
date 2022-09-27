@@ -67,8 +67,8 @@ class SwitchScreen extends StatefulWidget {
 }
 
 class SwitchClass extends State {
-  bool isSwitched = false;
-  var textValue1 = 'Notification';
+  bool isSwitched = true;
+  var textValue1 = 'Brightness Adjustment';
   var textValue2 = 'Phone screen will dim down \n30mins before sleep.';
 
   void toggleSwitch(bool value) {
@@ -77,16 +77,16 @@ class SwitchClass extends State {
     {
       setState(() {
         isSwitched = true;
-        textValue1 = 'Notification';
-        textValue2 = 'Phone screen will dim down \n30mins before sleep.';
+        textValue1 = 'Brightness Adjustment';
+        textValue2 = 'Phone screen will dim down\n30mins before sleep.';
       });
     }
     else
     {
       setState(() {
         isSwitched = false;
-        textValue1 = 'Notification';
-        textValue2 = 'Phone screen will dim down \n30mins before sleep.';
+        textValue1 = 'Brightness Adjustment';
+        textValue2 = 'Phone screen brightness will\nremain the same before sleep.';
       });
     }
   }
@@ -106,7 +106,7 @@ class SwitchClass extends State {
             children: [
               SizedBox(width: 10),
               Text('$textValue2', style: TextStyle(color: Colors.white,fontSize: 15,height: 2)),
-              SizedBox(width: 80),
+              SizedBox(width: 70),
               Transform.scale(
                   scale: 2,
                   child: Switch(
