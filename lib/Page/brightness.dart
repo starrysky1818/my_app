@@ -44,9 +44,9 @@ class MyBrightness extends StatelessWidget {
           ),
           Container(
               width: screenWidth,
-              height: screenWidth * 0.3,
+              height: screenWidth * 0.25,
               margin: const EdgeInsets.all(10),
-              padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
+              padding: new EdgeInsets.fromLTRB(20, 5.0, 20.0, 5.0),
               decoration: BoxDecoration(
                   color: Color.fromRGBO(20,47,67,1),
                   border: Border.all(color: Color.fromRGBO(39,69,92,1)),
@@ -67,9 +67,9 @@ class SwitchScreen extends StatefulWidget {
 }
 
 class SwitchClass extends State {
-  bool isSwitched = false;
-  var textValue1 = 'Notification';
-  var textValue2 = 'Phone screen will dim down 30mins before your pre-set sleep time.';
+  bool isSwitched = true;
+  var textValue1 = 'Brightness Adjustment';
+  var textValue2 = 'Phone screen will dim down \n30mins before sleep.';
 
   void toggleSwitch(bool value) {
 
@@ -77,16 +77,16 @@ class SwitchClass extends State {
     {
       setState(() {
         isSwitched = true;
-        textValue1 = 'Notification';
-        textValue2 = 'Phone screen will dim down 30mins before your pre-set sleep time.';
+        textValue1 = 'Brightness Adjustment';
+        textValue2 = 'Phone screen will dim down\n30mins before sleep.';
       });
     }
     else
     {
       setState(() {
         isSwitched = false;
-        textValue1 = 'Notification';
-        textValue2 = 'Phone screen will dim down 30mins before your pre-set sleep time.';
+        textValue1 = 'Brightness Adjustment';
+        textValue2 = 'Phone screen brightness will\nremain the same before sleep.';
       });
     }
   }
@@ -95,20 +95,31 @@ class SwitchClass extends State {
     // return Column(
     //     crossAxisAlignment: CrossAxisAlignment.stretch,
     return Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children:[ Text('$textValue1', style: TextStyle(color: Colors.white,fontSize: 20, fontWeight: FontWeight.bold)),
-          Text('$textValue2', style: TextStyle(color: Colors.white,fontSize: 15,height: 2)),
-          Transform.scale(
-              scale: 2,
-              child: Switch(
-                onChanged: toggleSwitch,
-                value: isSwitched,
-                activeColor: Colors.white,
-                activeTrackColor: Colors.blue,
-                inactiveThumbColor: Colors.white,
-                inactiveTrackColor: Colors.grey,
-              )
+        children:[
+          Text('$textValue1',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold)
           ),
+          Row(
+            children: [
+              SizedBox(width: 10),
+              Text('$textValue2', style: TextStyle(color: Colors.white,fontSize: 15,height: 2)),
+              SizedBox(width: 70),
+              Transform.scale(
+                  scale: 2,
+                  child: Switch(
+                    onChanged: toggleSwitch,
+                    value: isSwitched,
+                    activeColor: Colors.white,
+                    activeTrackColor: Colors.blue,
+                    inactiveThumbColor: Colors.white,
+                    inactiveTrackColor: Colors.grey,
+                  )
+              ),],
+          ),
+
         ]);
   }
 }
