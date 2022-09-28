@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/setting.dart';
 
-class MyNotification extends StatelessWidget {
-  MyNotification(bool notification, {super.key}) {
-    super.key;
-    this.notification = notification;
-  }
-
-  set notification(bool notification) {}
-
+class ActivityRecognition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -17,7 +10,7 @@ class MyNotification extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           GestureDetector(
-              onTap: () {
+              onTap: (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MySetting()),
@@ -26,14 +19,18 @@ class MyNotification extends StatelessWidget {
               child: new Container(
                 width: screenWidth,
                 padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
-                color: Color.fromRGBO(10, 39, 59, 1),
+                color: Color.fromRGBO(10,39,59,1),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.chevron_left, color: Colors.white),
+                    Icon(
+                        Icons.chevron_left,
+                        color: Colors.white
+                    ),
                   ],
                 ),
-              )),
+              )
+          ),
           Container(
             width: screenWidth,
             height: screenWidth * 0.42,
@@ -51,63 +48,64 @@ class MyNotification extends StatelessWidget {
               margin: const EdgeInsets.all(10),
               padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(20, 47, 67, 1),
-                  border: Border.all(color: Color.fromRGBO(39, 69, 92, 1)),
-                  borderRadius: BorderRadius.all(Radius.circular(100))),
-              child: SwitchScreen()),
+                  color: Color.fromRGBO(20,47,67,1),
+                  border: Border.all(color: Color.fromRGBO(39,69,92,1)),
+                  borderRadius: BorderRadius.all(Radius.circular(100))
+              ),
+              child: SwitchScreen(
+              )
+          ),
         ],
       ),
-      backgroundColor: const Color.fromRGBO(10, 39, 59, 1),
+      backgroundColor: const Color.fromRGBO(10,39,59,1),
     );
   }
 }
 
 class SwitchScreen extends StatefulWidget {
   @override
-  SwitchClass createState() => SwitchClass();
+  SwitchClass createState() => new SwitchClass();
 }
 
 class SwitchClass extends State {
-
-
   bool isSwitched = false;
-  var textValue = 'Send Sleep Notification';
-
-
+  var textValue = 'detection of activity';
 
   void toggleSwitch(bool value) {
-    if (isSwitched == false) {
+
+    if(isSwitched == false)
+    {
       setState(() {
         isSwitched = true;
-        textValue = 'Send Sleep Notification';
+        textValue = 'detection of activity';
       });
-    } else {
+    }
+    else
+    {
       setState(() {
         isSwitched = false;
-        textValue = 'Send Sleep Notification';
+        textValue = 'detection of activity';
       });
     }
   }
-
   @override
   Widget build(BuildContext context) {
     // return Column(
     //     crossAxisAlignment: CrossAxisAlignment.stretch,
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(
-        '$textValue',
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-      Transform.scale(
-          scale: 2,
-          child: Switch(
-            onChanged: toggleSwitch,
-            value: isSwitched,
-            activeColor: Colors.white,
-            activeTrackColor: Colors.blue,
-            inactiveThumbColor: Colors.white,
-            inactiveTrackColor: Colors.grey,
-          )),
-    ]);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:[ Text('$textValue', style: TextStyle(color: Colors.white,fontSize: 20),),
+          Transform.scale(
+              scale: 2,
+              child: Switch(
+                onChanged: toggleSwitch,
+                value: isSwitched,
+                activeColor: Colors.white,
+                activeTrackColor: Colors.blue,
+                inactiveThumbColor: Colors.white,
+                inactiveTrackColor: Colors.grey,
+              )
+          ),
+        ]);
   }
 }

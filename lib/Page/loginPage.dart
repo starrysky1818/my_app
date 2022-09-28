@@ -94,11 +94,13 @@ class _LoginHomePageState extends State<LoginHomePage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: RaisedButton(
-                    padding: EdgeInsets.all(15.0),
+                  child: ElevatedButton(
                     child: Text("登录"),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(15.0))
+                    ),
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
@@ -116,6 +118,8 @@ class _LoginHomePageState extends State<LoginHomePage> {
       ),
     );
   }
+
+
 
 }
 

@@ -3,8 +3,11 @@ import 'package:my_app/Page/brightness.dart';
 import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/notifications.dart';
 import 'package:my_app/Page/timeSetting.dart';
+import 'package:my_app/Page/activityRecognition.dart';
 
 class MySetting extends StatelessWidget {
+
+  bool notification = false;
 
   @override
   Widget build(BuildContext context) {
@@ -81,22 +84,22 @@ class MySetting extends StatelessWidget {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyNotification()),
+                  MaterialPageRoute(builder: (context) => MyNotification(notification)),
                 );
               },
-              child: new Container(
+              child: Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(20,47,67,1),
+                    color: const Color.fromRGBO(20,47,67,1),
                     border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                    borderRadius: BorderRadius.all(Radius.circular(100))
+                    borderRadius: const BorderRadius.all(Radius.circular(100))
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    new Text(
+                  children: const [
+                    Text(
                       "Notifications",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
@@ -167,6 +170,37 @@ class MySetting extends StatelessWidget {
                 ),
               )
           ),
+          GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ActivityRecognition()),
+                );
+              },
+              child: Container(
+                width: screenWidth,
+                margin: const EdgeInsets.all(10),
+                padding: new EdgeInsets.fromLTRB(20.0, 13, 20.0, 13),
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(20,47,67,1),
+                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
+                    borderRadius: BorderRadius.all(Radius.circular(100))
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      "Activity Recognition",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.chevron_right,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              )
+          )
         ],
       ),
       backgroundColor: const Color.fromRGBO(10,39,59,1),
