@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Bottom.dart';
+import 'package:dio/dio.dart';
 
 class LoginHomePage extends StatefulWidget {
   @override
@@ -41,35 +42,38 @@ class _LoginHomePageState extends State<LoginHomePage> {
 
   TextEditingController unameController = new TextEditingController();
   TextEditingController pwdController = new TextEditingController();
-  GlobalKey formKey = new GlobalKey<FormState>();
-  late String username;
-  late String password;
+  GlobalKey < FormState > formKey = GlobalKey();
+  String username = "";
+  String password = "";
+  late Response response;
+  Dio dio = Dio();
 
+  bool _validateAndSaveForm() {
+    final form = formKey.currentState!;
+    if (form.validate()) {
+      return true;
+    }
+    return false;
+  }
 
   Widget buildForm() {
     return Form(
-      //设置globalKey，用于后面获取FormState
+
       key: formKey,
 
       child: Column(
         children: <Widget>[
           TextFormField(
               autofocus: false,
-              keyboardType: TextInputType.number,
-              //键盘回车键的样式
-              textInputAction: TextInputAction.next,
               controller: unameController,
               decoration: InputDecoration(
                   labelText: "User Name",
                   hintText: "e-mail address",
                   icon: Icon(Icons.person)),
-              // 校验用户名
-              validator: (v) {
-                return v!.trim().length > 3 ? null : "User name cannot less than 3";
-              },
-              onSaved: (v) {
-                username = v!;
-              }),
+
+            validator: (val)=> (val == null || val.trim().length < 3) ? "User name cannot less than 3": null,
+            onSaved: (val)=> this.username = val!,
+          ),
           TextFormField(
               autofocus: false,
               controller: pwdController,
@@ -77,12 +81,9 @@ class _LoginHomePageState extends State<LoginHomePage> {
                   labelText: "Password", hintText: "Your Password", icon: Icon(Icons.lock)),
               obscureText: true,
               //校验密码
-              validator: (v) {
-                return v!.trim().length > 5 ? null : "Password cannot less than 5";
-              },
-              onSaved: (v) {
-                password = v!;
-              }),
+            validator: (val)=> (val == null || val.trim().length < 5) ? "password cannot less than 5": null,
+            onSaved: (val)=> this.password = val!,
+          ),
 
 
           Padding(
@@ -90,19 +91,53 @@ class _LoginHomePageState extends State<LoginHomePage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: RaisedButton(
-                    padding: EdgeInsets.all(15.0),
-                    child: Text("登录"),
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    onPressed: () {
-                      if ((formKey.currentState as FormState).validate()) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
-                        );
+                  child: ElevatedButton(
+                    child: Text("Log in"),
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(15.0))
+                    ),
+                    onPressed: () async {
+                      if(_validateAndSaveForm()){
+                        formKey.currentState!.save();
+                        response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
+                          'userName': username});
+                        if(response.data){
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Welcome to sleep planet'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => {
+                                    Navigator.pop(context, 'OK'),
+                                    Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
+                                    ),
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Failed to login'),
+                                  content: const Text('Please check your account and password'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                            ],
+                          ),
+                      );
+                        }
                       }
-                    },
+                      },
                   ),
                 ),
               ],
@@ -112,6 +147,8 @@ class _LoginHomePageState extends State<LoginHomePage> {
       ),
     );
   }
+
+
 
 }
 

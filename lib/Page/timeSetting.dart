@@ -18,13 +18,13 @@ class MyTimeSetting extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => MySetting()),
                 );
               },
-              child: new Container(
+              child: Container(
                 width: screenWidth,
-                padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
-                color: Color.fromRGBO(10,39,59,1),
+                padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+                color: const Color.fromRGBO(10,39,59,1),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children: const [
                     Icon(
                         Icons.chevron_left,
                         color: Colors.white
@@ -44,9 +44,7 @@ class MyTimeSetting extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-              child: MyClockPage(
-              )
+          MyClockPage(
           ),
         ],
       ),
@@ -93,7 +91,7 @@ class _MyClockPageState extends State<MyClockPage> {
                 child: Column(children: <Widget>[
                   SizedBox(height: 5),
                   Container(
-                    child: Text(
+                    child: const Text(
                       'Start Sleep',
                       style: TextStyle(
                           color: Colors.white,
@@ -119,7 +117,7 @@ class _MyClockPageState extends State<MyClockPage> {
                             onChanged: (hour1) {
                               value1 = int.parse(hour1);
                             },
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 30),
                             textAlign: TextAlign.center,
