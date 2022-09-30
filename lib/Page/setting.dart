@@ -144,34 +144,6 @@ class MySetting extends StatelessWidget {
           ),
           GestureDetector(
               onTap: (){
-                print("Container clicked");
-              },
-              child: new Container(
-                width: screenWidth,
-                margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 13, 20.0, 13),
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(20,47,67,1),
-                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                    borderRadius: BorderRadius.all(Radius.circular(100))
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    new Text(
-                      "App Management",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                    Icon(
-                      Icons.chevron_right,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              )
-          ),
-          GestureDetector(
-              onTap: (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ActivityRecognition()),
