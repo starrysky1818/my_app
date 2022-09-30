@@ -6,8 +6,7 @@ import 'package:my_app/Page/timeSettingwithPicker.dart';
 import 'package:my_app/Page/activityRecognition.dart';
 
 class MySetting extends StatelessWidget {
-
-  bool notification = false;
+  const MySetting({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,27 +16,24 @@ class MySetting extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
+                  MaterialPageRoute(
+                      builder: (context) => BottomNavigationWidget()),
                 );
               },
-              child: new Container(
+              child: Container(
                 width: screenWidth,
-                padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
-                color: Color.fromRGBO(10,39,59,1),
+                padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+                color: const Color.fromRGBO(10, 39, 59, 1),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                        Icons.chevron_left,
-                        color: Colors.white
-                    ),
+                  children: const [
+                    Icon(Icons.chevron_left, color: Colors.white),
                   ],
                 ),
-              )
-          ),
+              )),
           Container(
             width: screenWidth,
             height: screenWidth * 0.42,
@@ -50,41 +46,10 @@ class MySetting extends StatelessWidget {
             ),
           ),
           GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyTimeSetting()),
-                );
-              },
-              child: new Container(
-                width: screenWidth,
-                margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(20,47,67,1),
-                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                    borderRadius: BorderRadius.all(Radius.circular(100))
-                ),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                       new Text(
-                         "Sleep Time Setting",
-                         style: TextStyle(fontSize: 20, color: Colors.white),
-                       ),
-                       Icon(
-                         Icons.chevron_right,
-                         color: Colors.white,
-                       ),
-                    ],
-                ),
-              )
-          ),
-          GestureDetector(
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyNotification(notification)),
                 );
               },
               child: Container(
@@ -92,10 +57,40 @@ class MySetting extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 padding: const EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
                 decoration: BoxDecoration(
-                    color: const Color.fromRGBO(20,47,67,1),
-                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                    borderRadius: const BorderRadius.all(Radius.circular(100))
+                    color: const Color.fromRGBO(20, 47, 67, 1),
+                    border:
+                        Border.all(color: const Color.fromRGBO(39, 69, 92, 1)),
+                    borderRadius: const BorderRadius.all(Radius.circular(100))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      "Sleep Time Setting",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    Icon(
+                      Icons.chevron_right,
+                      color: Colors.white,
+                    ),
+                  ],
                 ),
+              )),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyNotification()),
+                );
+              },
+              child: Container(
+                width: screenWidth,
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
+                decoration: BoxDecoration(
+                    color: const Color.fromRGBO(20, 47, 67, 1),
+                    border:
+                        Border.all(color: const Color.fromRGBO(39, 69, 92, 1)),
+                    borderRadius: const BorderRadius.all(Radius.circular(100))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -109,28 +104,27 @@ class MySetting extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-          ),
+              )),
           GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyBrightness()),
+                  MaterialPageRoute(builder: (context) => const MyBrightness()),
                 );
               },
-              child: new Container(
+              child: Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 13.0, 20.0, 13.0),
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(20,47,67,1),
-                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                    borderRadius: BorderRadius.all(Radius.circular(100))
-                ),
+                    color: const Color.fromRGBO(20, 47, 67, 1),
+                    border:
+                        Border.all(color: const Color.fromRGBO(39, 69, 92, 1)),
+                    borderRadius: const BorderRadius.all(Radius.circular(100))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    new Text(
+                  children: const [
+                    Text(
                       "Screen Display Adjustment",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
@@ -140,24 +134,24 @@ class MySetting extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-          ),
+              )),
           GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ActivityRecognition()),
+                  MaterialPageRoute(
+                      builder: (context) => const ActivityRecognition()),
                 );
               },
               child: Container(
                 width: screenWidth,
                 margin: const EdgeInsets.all(10),
-                padding: new EdgeInsets.fromLTRB(20.0, 13, 20.0, 13),
+                padding: EdgeInsets.fromLTRB(20.0, 13, 20.0, 13),
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(20,47,67,1),
-                    border: Border.all(color: Color.fromRGBO(39,69,92,1)),
-                    borderRadius: BorderRadius.all(Radius.circular(100))
-                ),
+                    color: const Color.fromRGBO(20, 47, 67, 1),
+                    border:
+                        Border.all(color: const Color.fromRGBO(39, 69, 92, 1)),
+                    borderRadius: const BorderRadius.all(Radius.circular(100))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -171,11 +165,10 @@ class MySetting extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
-          )
+              ))
         ],
       ),
-      backgroundColor: const Color.fromRGBO(10,39,59,1),
+      backgroundColor: const Color.fromRGBO(10, 39, 59, 1),
     );
   }
 }
