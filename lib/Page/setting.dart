@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Page/brightness.dart';
 import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/notifications.dart';
-import 'package:my_app/Page/timeSetting.dart';
+import 'package:my_app/Page/timeSettingwithPicker.dart';
 import 'package:my_app/Page/activityRecognition.dart';
 
 class MySetting extends StatelessWidget {
