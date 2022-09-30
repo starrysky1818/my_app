@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Bottom.dart';
+import 'package:my_app/Page/loginPage.dart';
 import 'package:dio/dio.dart';
-import 'package:my_app/Page/signinPage.dart';
 
-class LoginHomePage extends StatefulWidget {
+class SigninHomePage extends StatefulWidget {
   @override
-  _LoginHomePageState createState() => new _LoginHomePageState();
+  _SigninHomePageState createState() => new _SigninHomePageState();
 }
 
-class _LoginHomePageState extends State<LoginHomePage> {
+class _SigninHomePageState extends State<SigninHomePage> {
   late double screenWidth;
   late double screenHeight;
   @override
@@ -16,41 +15,42 @@ class _LoginHomePageState extends State<LoginHomePage> {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(10,39,59,1),
-      body: ListView (
-        children: <Widget>[
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                height: screenHeight * 0.5,
-                alignment:Alignment.center,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('images/login.png'),
+        backgroundColor: const Color.fromRGBO(10,39,59,1),
+        body: ListView (
+          children: <Widget>[
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: screenHeight * 0.45,
+                  alignment:Alignment.center,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('images/SignIn.png'),
+                    ),
+                    color: Color.fromRGBO(10,39,59,1),
                   ),
-                  color: Color.fromRGBO(10,39,59,1),
                 ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.only(left:screenWidth*0.06,right: screenWidth*0.06),
-                child: new Container(
-                  child: buildForm(),
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(left:screenWidth*0.06,right: screenWidth*0.06),
+                  child: new Container(
+                    child: buildForm(),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      )
+              ],
+            ),
+          ],
+        )
 
     );
   }
 
   TextEditingController unameController = new TextEditingController();
   TextEditingController pwdController = new TextEditingController();
+  TextEditingController doublePwdController = new TextEditingController();
   GlobalKey < FormState > formKey = GlobalKey();
   String username = "";
   String password = "";
@@ -97,7 +97,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                 ),
               ),
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.white70,
               ),
               validator: (val)=> (val == null || val.trim().length < 3) ? "User name cannot less than 3": null,
               onSaved: (val)=> this.username = val!,
@@ -130,12 +130,47 @@ class _LoginHomePageState extends State<LoginHomePage> {
                   ),
                 ),
               ),
-              obscureText: true,
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.white70,
               ),
+              obscureText: true,
               validator: (val)=> (val == null || val.trim().length < 5) ? "password cannot less than 5": null,
               onSaved: (val)=> this.password = val!,
+            ),
+          ),
+
+          Container(
+            padding: EdgeInsets.all(8),
+            child: TextFormField(
+              autofocus: false,
+              controller: doublePwdController,
+              decoration: InputDecoration(
+                labelText: "Password",
+                hintText: "Inter your password again",
+                labelStyle: const TextStyle(color: Colors.white),
+                hintStyle: const TextStyle(color: Colors.white),
+                prefixIcon: const Icon(Icons.lock, color: Colors.cyanAccent,),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(
+                    color: Colors.cyanAccent,
+                    width: 2.0,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide: BorderSide(
+                    color: Color.fromRGBO(39,69,92,1),
+                    width: 2.0,
+                  ),
+                ),
+              ),
+              style: TextStyle(
+                color: Colors.white70,
+              ),
+              obscureText: true,
+              validator: (val)=> (val == null || val.compareTo(pwdController.text)!=0)
+                  ? "The password is different from the above": null,
             ),
           ),
 
@@ -145,7 +180,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
               children: <Widget>[
                 Expanded(
                   child: ElevatedButton(
-                    child: Text("Log in",style: TextStyle(fontSize: 24)),
+                    child: Text("Sign in",style: TextStyle(fontSize: 24)),
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
@@ -160,19 +195,19 @@ class _LoginHomePageState extends State<LoginHomePage> {
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
-                        response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
+                        response = await dio.get('http://172.20.10.2:8080/user/signUpCheck', queryParameters: {'password': password,
                           'userName': username});
                         if(response.data){
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
-                              title: const Text('Welcome to sleep planet'),
+                              title: const Text('Sign up successful'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () => {
                                     Navigator.pop(context, 'OK'),
                                     Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
+                                      MaterialPageRoute(builder: (context) => LoginHomePage()),
                                     ),
                                   },
                                   child: const Text('OK'),
@@ -182,21 +217,21 @@ class _LoginHomePageState extends State<LoginHomePage> {
                           );
                         } else {
                           showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                  title: const Text('Failed to login'),
-                                  content: const Text('Please check your account and password'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context, 'OK'),
-                                      child: const Text('OK'),
-                                    ),
-                            ],
-                          ),
-                      );
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Failed to Sign up'),
+                              content: const Text('Please check your account and password'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'OK'),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
                         }
                       }
-                      },
+                    },
                   ),
                 ),
               ],
@@ -206,7 +241,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SigninHomePage()),
+                  MaterialPageRoute(builder: (context) => LoginHomePage()),
                 );
               },
               child: Container(
@@ -217,10 +252,10 @@ class _LoginHomePageState extends State<LoginHomePage> {
                   children: [
                     Container(
                       child: Text(
-                        'Sign up now',
+                        'Back',
                         style: TextStyle(
                           color: Colors.red,
-                          fontSize: 18,
+                          fontSize: 20,
                         ),
                       ),
                     ),
