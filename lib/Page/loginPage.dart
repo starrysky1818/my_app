@@ -43,8 +43,8 @@ class _LoginHomePageState extends State<LoginHomePage> {
   TextEditingController unameController = new TextEditingController();
   TextEditingController pwdController = new TextEditingController();
   GlobalKey < FormState > formKey = GlobalKey();
-  String username = "a";
-  String password = "1234";
+  String username = "";
+  String password = "";
   late Response response;
   Dio dio = Dio();
 
@@ -58,7 +58,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
 
   Widget buildForm() {
     return Form(
-      //设置globalKey，用于后面获取FormState
+
       key: formKey,
 
       child: Column(
@@ -70,10 +70,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                   labelText: "User Name",
                   hintText: "e-mail address",
                   icon: Icon(Icons.person)),
-              // 校验用户名
-              //validator: (v) {
-                //return v!.trim().length > 3 ? null : "User name cannot less than 3";
-              //},
+
             validator: (val)=> (val == null || val.trim().length < 3) ? "User name cannot less than 3": null,
             onSaved: (val)=> this.username = val!,
           ),
@@ -95,7 +92,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
               children: <Widget>[
                 Expanded(
                   child: ElevatedButton(
-                    child: Text("登录"),
+                    child: Text("Log in"),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all(Colors.white),
                       backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
@@ -104,9 +101,41 @@ class _LoginHomePageState extends State<LoginHomePage> {
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
-                        response = await dio.get('/test', queryParameters: {'password': username,
-                          'userName': password});
-                        print(response.data.toString());
+                        response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
+                          'userName': username});
+                        if(response.data){
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Welcome to sleep planet'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => {
+                                    Navigator.pop(context, 'OK'),
+                                    Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
+                                    ),
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Failed to login'),
+                                  content: const Text('Please check your account and password'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context, 'OK'),
+                                      child: const Text('OK'),
+                                    ),
+                            ],
+                          ),
+                      );
+                        }
                       }
                       },
                   ),
