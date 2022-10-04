@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Page/setting.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'dart:async';
+import 'package:get_storage/get_storage.dart';
+import 'package:screen_brightness/screen_brightness.dart';
+
 
 class MyTimeSetting extends StatelessWidget {
   @override
@@ -69,6 +72,7 @@ class _MyClockPageState extends State<MyClockPage> {
   late TimeOfDay pickedEndTime;
   int endHour = 0;
   int endMinute = 0;
+  final flag = GetStorage();
 
   Future<Null> selectTime1(BuildContext context) async {
     pickedStartTime = (await showTimePicker(
@@ -204,7 +208,7 @@ class _MyClockPageState extends State<MyClockPage> {
                   icon: Icon(Icons.timer),  //icon data for elevated button
                   label: Text("Select Wake Up Time"),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.white12,
+                      backgroundColor: Colors.white12,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                   ),
                 ),
@@ -265,18 +269,19 @@ class _MyClockPageState extends State<MyClockPage> {
 
               SizedBox(height: 10),
 
-              Container(
-                child: TextButton(
-                  onPressed: () {
-                    FlutterAlarmClock.createAlarm(startHour, startMinute);
-                    FlutterAlarmClock.createAlarm(endHour, endMinute);
-                  },
-                  child: Text(
-                    "Confirm",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white60,
-                    ),
+              TextButton(
+                onPressed: () {
+                  if (flag.read('brightness')) {
+                    ScreenBrightness().setScreenBrightness(0.1);
+                  }
+                  FlutterAlarmClock.createAlarm(startHour, startMinute);
+                  FlutterAlarmClock.createAlarm(endHour, endMinute);
+                },
+                child: const Text(
+                  "Confirm",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white60,
                   ),
                 ),
               ),
