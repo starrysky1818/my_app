@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Page/setting.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'dart:async';
+import 'package:screen_brightness/screen_brightness.dart';
 
 class MyTimeSetting extends StatelessWidget {
   @override
@@ -252,7 +253,7 @@ class _MyClockPageState extends State<MyClockPage> {
                   FlutterAlarmClock.createAlarm(value1, value2);
                   FlutterAlarmClock.createAlarm(value3, value4);
                 },
-                child: Text(
+                child: const Text(
                   "Confirm",
                 style: TextStyle(
                   fontSize: 25,

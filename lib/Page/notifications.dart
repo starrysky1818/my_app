@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/setting.dart';
+import 'package:get_storage/get_storage.dart';
 
 class MyNotification extends StatelessWidget {
-  MyNotification(bool notification, {super.key}) {
+  MyNotification({super.key}) {
     super.key;
-    this.notification = notification;
   }
-
-  set notification(bool notification) {}
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +21,13 @@ class MyNotification extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => MySetting()),
                 );
               },
-              child: new Container(
+              child: Container(
                 width: screenWidth,
-                padding: new EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
-                color: Color.fromRGBO(10, 39, 59, 1),
+                padding: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+                color: const Color.fromRGBO(10, 39, 59, 1),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                  children: const [
                     Icon(Icons.chevron_left, color: Colors.white),
                   ],
                 ),
@@ -49,12 +47,13 @@ class MyNotification extends StatelessWidget {
               width: screenWidth,
               height: screenWidth * 0.2,
               margin: const EdgeInsets.all(10),
-              padding: new EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
+              padding: const EdgeInsets.fromLTRB(20, 10.0, 20.0, 10.0),
               decoration: BoxDecoration(
-                  color: Color.fromRGBO(20, 47, 67, 1),
-                  border: Border.all(color: Color.fromRGBO(39, 69, 92, 1)),
-                  borderRadius: BorderRadius.all(Radius.circular(100))),
-              child: SwitchScreen()),
+                  color: const Color.fromRGBO(20, 47, 67, 1),
+                  border:
+                      Border.all(color: const Color.fromRGBO(39, 69, 92, 1)),
+                  borderRadius: const BorderRadius.all(Radius.circular(100))),
+              child: const SwitchScreen()),
         ],
       ),
       backgroundColor: const Color.fromRGBO(10, 39, 59, 1),
@@ -63,28 +62,25 @@ class MyNotification extends StatelessWidget {
 }
 
 class SwitchScreen extends StatefulWidget {
+  const SwitchScreen({super.key});
+
   @override
   SwitchClass createState() => SwitchClass();
 }
 
 class SwitchClass extends State {
-
-
+  final switchData = GetStorage();
   bool isSwitched = false;
+
   var textValue = 'Send Sleep Notification';
 
+  @override
+  void initState() {
+    super.initState();
 
-
-  void toggleSwitch(bool value) {
-    if (isSwitched == false) {
+    if (switchData.read('notification') != null) {
       setState(() {
-        isSwitched = true;
-        textValue = 'Send Sleep Notification';
-      });
-    } else {
-      setState(() {
-        isSwitched = false;
-        textValue = 'Send Sleep Notification';
+        isSwitched = switchData.read('notification');
       });
     }
   }
@@ -95,13 +91,18 @@ class SwitchClass extends State {
     //     crossAxisAlignment: CrossAxisAlignment.stretch,
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Text(
-        '$textValue',
-        style: TextStyle(color: Colors.white, fontSize: 20),
+        textValue,
+        style: const TextStyle(color: Colors.white, fontSize: 20),
       ),
       Transform.scale(
           scale: 2,
           child: Switch(
-            onChanged: toggleSwitch,
+            onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+                switchData.write('notification', isSwitched);
+              });
+            },
             value: isSwitched,
             activeColor: Colors.white,
             activeTrackColor: Colors.blue,
