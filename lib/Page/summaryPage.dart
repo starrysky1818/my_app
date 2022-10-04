@@ -72,12 +72,28 @@ class MySummary extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.fromLTRB(13.0, 1.0, 13.0, 1.0),
-                        child: const Text("Avg.Sleep Duration",
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                              fontFamily: 'Inter'),
-                          textAlign: TextAlign.left,),
+                        child: Row(
+                          children: [
+                            const Text("Avg.Sleep Duration",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter')),
+                            const Text(":",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontFamily: 'Inter'),
+                            ),
+                            SizedBox(width: 60),
+                            const Text("7.23 hours",
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontFamily: 'Inter'
+                            ),)
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(
@@ -90,11 +106,28 @@ class MySummary extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.fromLTRB(13.0, 1.0, 13.0, 1.0),
-                        child: const Text("Daily Sleep Debt",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,),
-                          textAlign: TextAlign.left,),
+                        child: Row(
+                          children: [
+                            const Text("Daily Sleep Debt",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,),
+                              textAlign: TextAlign.left,),
+                            const Text(":",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter'),
+                            ),
+                            SizedBox(width: 85),
+                            const Text("0.77 hours",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter'
+                              ),)
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(
@@ -107,11 +140,28 @@ class MySummary extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.fromLTRB(13.0, 1.0, 13.0, 1.0),
-                        child: const Text("Sleep Quality",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,),
-                          textAlign: TextAlign.left,),
+                        child: Row(
+                          children: [
+                            const Text("Sleep Quality",
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,),
+                              textAlign: TextAlign.left,),
+                            const Text(":",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter'),
+                            ),
+                            SizedBox(width: 160),
+                            const Text("Good",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontFamily: 'Inter'
+                              ),)
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(
