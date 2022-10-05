@@ -43,7 +43,7 @@ class MyTimeSetting extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('images/time_setting.png'),
+                image: AssetImage('images/alarm_setting.jpg'),
               ),
             ),
           ),
@@ -208,7 +208,7 @@ class _MyClockPageState extends State<MyClockPage> {
                   icon: Icon(Icons.timer),  //icon data for elevated button
                   label: Text("Select Wake Up Time"),
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white12,
+                      primary: Colors.white12,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                   ),
                 ),
