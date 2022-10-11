@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_app/Bottom.dart';
 import 'package:dio/dio.dart';
 import 'package:my_app/Page/signinPage.dart';
+import 'package:get_storage/get_storage.dart';
+
 
 class LoginHomePage extends StatefulWidget {
   @override
@@ -56,6 +59,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
   String password = "";
   late Response response;
   Dio dio = Dio();
+  final GetStorage box = GetStorage();
 
   bool _validateAndSaveForm() {
     final form = formKey.currentState!;
@@ -75,9 +79,13 @@ class _LoginHomePageState extends State<LoginHomePage> {
             child: TextFormField(
               autofocus: false,
               controller: unameController,
+              keyboardType: TextInputType.text,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+              ],
               decoration: InputDecoration(
                 labelText: "User Name",
-                hintText: "e-mail address",
+                hintText: "Your Name, Only text allowed",
                 labelStyle: const TextStyle(color: Colors.white),
                 hintStyle: const TextStyle(color: Colors.white),
                 prefixIcon: const Icon(Icons.person, color: Colors.cyanAccent,),
@@ -99,7 +107,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
               style: TextStyle(
                 color: Colors.white,
               ),
-              validator: (val)=> (val == null || val.trim().length < 3) ? "User name cannot less than 3": null,
+              validator: (val)=> (val == null || val.trim().length < 4) ? "User name cannot less than 3": null,
               onSaved: (val)=> this.username = val!,
             ),
           ),
@@ -109,6 +117,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
             child: TextFormField(
               autofocus: false,
               controller: pwdController,
+              keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
                 labelText: "Password",
                 hintText: "Your Password",
@@ -160,9 +169,12 @@ class _LoginHomePageState extends State<LoginHomePage> {
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
-                        response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
-                          'userName': username});
-                        if(response.data){
+                        //response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
+                        //  'userName': username});
+                        if(true/*response.data*/){
+                          box.write('user', username.toString());
+                          box.save();
+                          print(box.read('user'));
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(

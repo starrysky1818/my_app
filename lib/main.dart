@@ -6,8 +6,13 @@ import 'package:my_app/Page/loginPage.dart';
 import 'package:my_app/Page/timeSetting.dart';
 import 'package:my_app/Page/homePage.dart';
 import 'package:my_app/Page/setting.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:my_app/Page/reward/application.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Application.initAppSetup();
+  await GetStorage.init();
   runApp(MyApp());
 }
 
@@ -16,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MySetting(),
+      home: LoginHomePage(),
 
     );
   }
