@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/homePage.dart';
 import 'package:my_app/Page/searchFriends.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:my_app/Page/user.dart';
+//import 'package:timezone/timezone.dart' as tz;
+//import 'package:timezone/data/latest.dart' as tzData;
+
 
 class MyFriends extends StatelessWidget {
   List<User> friends = [
@@ -11,7 +16,6 @@ class MyFriends extends StatelessWidget {
   ];
 
    Widget _mapWidget() {
-     //double screenWidth = MediaQuery.of(context).size.width;
      return Column(
            children: [
              Expanded(
@@ -28,19 +32,20 @@ class MyFriends extends StatelessWidget {
                          ),
                          trailing: Wrap(
                            children :<Widget> [
-                             ElevatedButton(
-                               onPressed: () {},
-                               style: ElevatedButton.styleFrom(
-                                 padding: const EdgeInsets.fromLTRB(25.0, 12.0, 25.0, 12.0),
-                                 shape: const StadiumBorder(),
-                                 primary: Colors.blueGrey,
-                                 textStyle: const TextStyle(
-                                   fontSize: 18.0,
-                                   color: Colors.white,
-                                 ),
-                               ),
-                               child: const Text('Visit'),
-                             ),
+                             // ElevatedButton(
+                             //   onPressed: () {},
+                             //   style: ElevatedButton.styleFrom(
+                             //     padding: const EdgeInsets.fromLTRB(25.0, 12.0, 25.0, 12.0),
+                             //     shape: const StadiumBorder(),
+                             //     primary: Colors.blueGrey,
+                             //     textStyle: const TextStyle(
+                             //       fontSize: 18.0,
+                             //       color: Colors.white,
+                             //     ),
+                             //   ),
+                             //   child: const Text('Visit'),
+                             // ),
+
                              Padding(
                                padding: const EdgeInsets.only(left: 6),
                                child:ElevatedButton(
@@ -167,30 +172,4 @@ class MyFriends extends StatelessWidget {
   }
 }
 
-class User{
-  String name;
-  int accNumber;
-  String password;
-  List<User> users = <User>[];
 
-  User({required this.name, required this.accNumber, required this.password});
-
-  void visit(User user) {
-    for (var item in users) {
-      if(item == user) {
-        return item.getPlanet();
-      }
-    }
-  }
-
-  void getPlanet() {}
-  void sendMessage() {}
-
-  void message(User user) {
-    for (var item in users) {
-      if(item == user) {
-        return item.sendMessage();
-      }
-    }
-  }
-}
