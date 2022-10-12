@@ -11,6 +11,8 @@ class Info extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     GetStorage box = GetStorage();
+    //print(box.read(box.read("user")+'Gender').toString());
+    //print(box.read("user"));
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -110,7 +112,7 @@ class Info extends StatelessWidget {
                       fontSize: 18.0),
                 ),
                 SizedBox(width: 75),
-                Text("25",
+                Text(box.read(box.read("user")+'Age').toString(),
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0),
@@ -138,7 +140,7 @@ class Info extends StatelessWidget {
                       fontSize: 18.0),
                 ),
                 SizedBox(width: 75),
-                Text("Male",
+                Text(box.read(box.read("user")+'Gender').toString(),
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0),
@@ -147,30 +149,33 @@ class Info extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child:
-            Expanded(
-              child: Container(
-                width: screenWidth*0.5,
-                child: ElevatedButton(
-                  child: Text("Edit",style: TextStyle(fontSize: 24)),
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(28.0),
+            padding: EdgeInsets.fromLTRB(screenWidth*0.25,10.0,screenWidth*0.25,10),
+            child: Row (
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    width: screenWidth*0.5,
+                    child: ElevatedButton(
+                      child: Text("Edit",style: TextStyle(fontSize: 24)),
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(28.0),
+                          ),
+                        ),
+                        foregroundColor: MaterialStateProperty.all(Colors.white),
+                        backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
                       ),
+                      onPressed: (){
+                        Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => editPage()),
+                        );
+                      },
                     ),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
-                    padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
                   ),
-                  onPressed: (){
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => editPage()),
-                    );
-                  },
                 ),
-              ),
+              ],
             ),
           ),
         ],

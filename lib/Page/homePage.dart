@@ -52,31 +52,36 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child:
-              Expanded(
-                child: Container(
-                  width: screenWidth*0.5,
-                  child: ElevatedButton(
-                    child: Text("Start Sleep",style: TextStyle(fontSize: 24)),
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(28.0),
+              padding: EdgeInsets.fromLTRB(screenWidth*0.25,10.0,screenWidth*0.25,10),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      width: screenWidth*0.5,
+                      child: ElevatedButton(
+                        child: Text("Start Sleep",style: TextStyle(fontSize: 24)),
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(28.0),
+                            ),
+                          ),
+                          foregroundColor: MaterialStateProperty.all(Colors.white),
+                          backgroundColor: MaterialStateProperty.all(Colors.blue),
+                          padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
                         ),
+                        onPressed: (){
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => MyTimeSetting()),
+                          );
+                        },
                       ),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
-                      padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
                     ),
-                    onPressed: (){
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyTimeSetting()),
-                      );
-                      },
                   ),
-                ),
-              ),
+                ],
+              )
+
             ),
             ]
         )

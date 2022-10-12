@@ -110,6 +110,7 @@
 
 import 'package:flutter/material.dart';
 import 'friendPage.dart';
+import 'package:my_app/Page/user.dart';
 
 class searchFriends extends StatefulWidget {
   @override

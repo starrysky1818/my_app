@@ -52,7 +52,23 @@ class MyFriends extends StatelessWidget {
                                padding: const EdgeInsets.only(left: 6),
                                child:ElevatedButton(
                                  onPressed: () {
-                                   notification.send("Notification", "Message successfully send :)", "0:0");
+                                   DateTime dateTime= DateTime.now();
+                                   String time = dateTime.hour.toString() + ':' + (dateTime.minute+1).toString();
+                                   notification.send("Notification", "Message successfully send :)", time);
+                                   showDialog<String>(
+                                     context: context,
+                                     builder: (BuildContext context) => AlertDialog(
+                                       title: const Text('Your message has been sent'),
+                                       actions: <Widget>[
+                                         TextButton(
+                                           onPressed: () => {
+                                             Navigator.pop(context, 'OK'),
+                                           },
+                                           child: const Text('OK'),
+                                         ),
+                                       ],
+                                     ),
+                                   );
                                  },
                                  style: ElevatedButton.styleFrom(
                                    padding: const EdgeInsets.all(12),

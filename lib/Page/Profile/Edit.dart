@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Page/Profile/accountPage.dart';
 import 'package:my_app/Page/loginPage.dart';
 import 'package:dio/dio.dart';
+import 'package:my_app/Page/reward/reward_manager.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:my_app/Page/Profile/information.dart';
 
 const List<String> list = <String>['Secret', 'Male', 'Female'];
+String Gender = "Secret";
 
 class editPage extends StatefulWidget {
   @override
@@ -17,6 +22,7 @@ class DropdownButtonExample extends StatefulWidget {
 
 class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   String dropdownValue = list.first;
+  GetStorage box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +38,7 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
         // This is called when the user selects an item.
         setState(() {
           dropdownValue = value!;
+          Gender = dropdownValue.toString();
         });
       },
       items: list.map<DropdownMenuItem<String>>((String value) {
@@ -47,6 +54,7 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
 class _editPageState extends State<editPage> {
   late double screenWidth;
   late double screenHeight;
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -79,6 +87,7 @@ class _editPageState extends State<editPage> {
   String age = "";
   late Response response;
   Dio dio = Dio();
+  GetStorage box = GetStorage();
 
   bool _validateAndSaveForm() {
     final form = formKey.currentState!;
@@ -191,17 +200,24 @@ class _editPageState extends State<editPage> {
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
-                        if(response.data){
+                        if(true){
+                          box.write('user', username.toString());
+                          String User = box.read('user');
+                          box.write(User+'Age', age);
+                          box.write(box.read('user')+'Gender', Gender);
+                          box.save();
+                          //print(box.read(User+'Age'));
+                          //print(box.read(User+'Gender'));
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
-                              title: const Text('Sign up successful'),
+                              title: const Text('Edit successful'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () => {
                                     Navigator.pop(context, 'OK'),
                                     Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) => LoginHomePage()),
+                                      MaterialPageRoute(builder: (context) => Info()),
                                     ),
                                   },
                                   child: const Text('OK'),
@@ -221,7 +237,7 @@ class _editPageState extends State<editPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginHomePage()),
+                  MaterialPageRoute(builder: (context) => Info()),
                 );
               },
               child: Container(

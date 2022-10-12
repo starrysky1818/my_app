@@ -175,6 +175,8 @@ class _LoginHomePageState extends State<LoginHomePage> {
                         // if do not have back-end, change if loop conditions to true
                         if(true/*response.data*/){
                           box.write('user', username.toString());
+                          box.write(username.toString()+'Age', 'Secret');
+                          box.write(username.toString()+'Gender', 'Secret');
                           box.save();
                           print(box.read('user'));
                           showDialog<String>(
