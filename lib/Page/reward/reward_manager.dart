@@ -18,12 +18,12 @@ class RewardManager extends ChangeNotifier {
   static RewardManager? _single;
   RewardManager._(){
 
-    print("kRewardIntegral --- ${SpUtil.getInt(kRewardIntegral)}");
+    //print("kRewardIntegral --- ${SpUtil.getInt(kRewardIntegral)}");
     if(SpUtil.getInt(kRewardIntegral) > 0) {
       rewardIntegral = SpUtil.getInt(kRewardIntegral);
     }
     SpUtil.getObjList(kSelectRewardInfoList, (Map data) {
-      print("data === ${data}");
+      //print("data === ${data}");
 
       selectRewardInfoList.add(data as Map<String,dynamic>);
     });

@@ -145,7 +145,7 @@ class _SleepPlanteHomePageState extends State<SleepPlanteHomePage> {
                 stream: RewardManager.instance().rewardIntegralState,
                 initialData: RewardManager.instance().rewardIntegral,
                 builder: (checkedContext, selceted) {
-                  print("rewardIntegral ==  ${selceted}");
+                  //print("rewardIntegral ==  ${selceted}");
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

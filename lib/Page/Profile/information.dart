@@ -3,14 +3,18 @@ import 'package:my_app/Page/Profile/body.dart';
 import 'package:my_app/Page/Profile/accountPage.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_app/Page/Profile/Edit.dart';
 
 class Info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    GetStorage box = GetStorage();
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           GestureDetector(
               onTap: () {
@@ -50,7 +54,7 @@ class Info extends StatelessWidget {
                         fontSize: 18.0),
                   ),
                   SizedBox(width: 75),
-                  Text(GetStorage().read("user"),
+                  Text(box.read("user"),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0),
@@ -140,6 +144,33 @@ class Info extends StatelessWidget {
                       fontSize: 18.0),
                 ),
               ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child:
+            Expanded(
+              child: Container(
+                width: screenWidth*0.5,
+                child: ElevatedButton(
+                  child: Text("Edit",style: TextStyle(fontSize: 24)),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28.0),
+                      ),
+                    ),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
+                  ),
+                  onPressed: (){
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => editPage()),
+                    );
+                  },
+                ),
+              ),
             ),
           ),
         ],
