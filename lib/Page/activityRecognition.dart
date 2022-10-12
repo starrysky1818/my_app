@@ -37,7 +37,7 @@ class ActivityRecognition extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('images/notifications.png'),
+                image: AssetImage('images/activity_monitor.png'),
               ),
             ),
           ),
