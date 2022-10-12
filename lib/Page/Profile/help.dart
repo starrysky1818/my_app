@@ -52,7 +52,7 @@ class Help extends StatelessWidget {
                 SizedBox(height: 20),
                 Text("Settings -> Sleep Time Setting -> Select Sleep Time and Select Wake Up Time -> Confirm :)",
                   style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.white60,
                       fontSize: 15.0),
                 ),
               ],
@@ -80,7 +80,7 @@ class Help extends StatelessWidget {
                 SizedBox(height: 20),
                 Text("Just click Summary :)",
                   style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.white60,
                       fontSize: 15.0),
                 ),
               ],
@@ -110,7 +110,7 @@ class Help extends StatelessWidget {
                     "you will get 20 dollars rewards, you can go to home button and"
                     "click the planet, then you can buy some decorations to make your plant more beautiful :)",
                   style: TextStyle(
-                      color: Colors.white70,
+                      color: Colors.white60,
                       fontSize: 15.0),
                 ),
               ],
