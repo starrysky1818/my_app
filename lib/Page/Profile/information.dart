@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Page/Profile/body.dart';
 import 'package:my_app/Page/Profile/accountPage.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Info extends StatelessWidget {
   @override
@@ -49,7 +50,7 @@ class Info extends StatelessWidget {
                         fontSize: 18.0),
                   ),
                   SizedBox(width: 75),
-                  Text("Jack",
+                  Text(GetStorage().read("user"),
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0),
