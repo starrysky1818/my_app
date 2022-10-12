@@ -46,6 +46,9 @@ dependencies:
   shared_preferences: ^2.0.15
   synchronized: ^3.0.0+3
   toast: ^0.3.0
+  flutter_local_notifications: ^12.0.1+1
+  flutter_native_timezone: ^2.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -86,9 +89,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: MyFlutterApp
+    - family: Inter-Bold
       fonts:
-        - asset: fonts/MyFlutterApp.ttf
+        - asset: fonts/Inter-Bold.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

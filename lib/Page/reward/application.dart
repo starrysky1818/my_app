@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'sp_util.dart';
 import 'package:toast/toast.dart';
+import 'package:my_app/notifications_manager.dart';
 
 class Application {
   static GlobalKey<NavigatorState> key = GlobalKey();
@@ -26,6 +27,7 @@ class Application {
 
   static initAppSetup() async {
     spUtil = (await SpUtil.getInstance())!;
+    await  notification.configureLocalTimeZone();
   }
 
   // Configure the screen adaptation tool
