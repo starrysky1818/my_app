@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/Page/Profile/help.dart';
 import 'package:my_app/Page/Profile/information.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
+import 'package:my_app/Page/Profile/settingProfile.dart';
 import 'package:my_app/Page/loginPage.dart';
 
 import '../setting.dart';
@@ -97,7 +98,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                         context,
                         // change !!!
-                        MaterialPageRoute(builder: (context) => MySetting()),
+                        MaterialPageRoute(builder: (context) => SettingProfile()),
                       );
                     },
                     child: Container(
