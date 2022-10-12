@@ -3,6 +3,7 @@ import 'package:my_app/Page/homePage.dart';
 import 'package:my_app/Page/searchFriends.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:my_app/Page/user.dart';
+import 'package:my_app/notifications_manager.dart';
 //import 'package:timezone/timezone.dart' as tz;
 //import 'package:timezone/data/latest.dart' as tzData;
 
@@ -46,10 +47,13 @@ class MyFriends extends StatelessWidget {
                              //   child: const Text('Visit'),
                              // ),
 
+
                              Padding(
                                padding: const EdgeInsets.only(left: 6),
                                child:ElevatedButton(
-                                 onPressed: () {},
+                                 onPressed: () {
+                                   notification.send("Notification", "Message successfully send :)", "0:0");
+                                 },
                                  style: ElevatedButton.styleFrom(
                                    padding: const EdgeInsets.all(12),
                                    shape: const StadiumBorder(),
