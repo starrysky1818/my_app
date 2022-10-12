@@ -4,6 +4,8 @@ import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'dart:async';
 import 'package:get_storage/get_storage.dart';
 import 'package:screen_brightness/screen_brightness.dart';
+import 'package:my_app/Page/reward/reward_manager.dart' as reward;
+import 'package:my_app/notifications_manager.dart';
 
 
 class MyTimeSetting extends StatelessWidget {
@@ -271,11 +273,15 @@ class _MyClockPageState extends State<MyClockPage> {
 
               TextButton(
                 onPressed: () {
-                  if (flag.read('brightness')) {
+                  print(startHour.toString());
+                  /*if (flag.read('brightness')) {
                     ScreenBrightness().setScreenBrightness(0.1);
-                  }
-                  FlutterAlarmClock.createAlarm(startHour, startMinute);
+                  }*/
+                  String timeStr = startHour.toString() + ":" + startMinute.toString();
+                  notification.send("Notification", "Time to go to bed :)", timeStr);
+                  reward.RewardManager.instance().addRewardIntegral(10);
                   FlutterAlarmClock.createAlarm(endHour, endMinute);
+                  reward.RewardManager.instance().addRewardIntegral(10);
                 },
                 child: const Text(
                   "Confirm",

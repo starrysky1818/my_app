@@ -169,8 +169,10 @@ class _LoginHomePageState extends State<LoginHomePage> {
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
-                        //response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
+                        // connect to back-end
+                        // response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
                         //  'userName': username});
+                        // if do not have back-end, change if loop conditions to true
                         if(true/*response.data*/){
                           box.write('user', username.toString());
                           box.save();

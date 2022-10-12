@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/Page/Profile/help.dart';
+import 'package:my_app/Page/Profile/information.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
+import 'package:my_app/Page/loginPage.dart';
 
 import '../setting.dart';
 
@@ -42,7 +45,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                         context,
                         // change !!!
-                        MaterialPageRoute(builder: (context) => MySetting()),
+                        MaterialPageRoute(builder: (context) => Info()),
                       );
                     },
                     child: Container(
@@ -145,8 +148,7 @@ class Body extends StatelessWidget {
                     onTap: (){
                       Navigator.push(
                         context,
-                        // change !!!
-                        MaterialPageRoute(builder: (context) => MySetting()),
+                        MaterialPageRoute(builder: (context) => Help()),
                       );
                     },
                     child: Container(
@@ -198,7 +200,7 @@ class Body extends StatelessWidget {
                       Navigator.push(
                         context,
                         // change !!!
-                        MaterialPageRoute(builder: (context) => MySetting()),
+                        MaterialPageRoute(builder: (context) => LoginHomePage()),
                       );
                     },
                     child: Container(

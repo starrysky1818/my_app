@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import 'package:my_app/Page/reward/sleep_planet_home.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_app/Page/timeSettingwithPicker.dart';
 
 
 class MyHomePage extends StatelessWidget {
@@ -17,20 +19,67 @@ class MyHomePage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/home.png'),
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
           ),
         ),
-        child: GestureDetector(
-          onTap: (){
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SleepPlanteHomePage()),
-            );
-            },
-          child: Image.asset('images/plant.png',
-            width: screenWidth,
-          ),
-        ),
+        child: Column (
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget> [
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SleepPlanteHomePage()),
+                );
+              },
+              child: Container (
+                height:screenHeight*0.5,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/plant.png'),
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                child: const Text('Enter your planet',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black54,
+                      fontFamily: 'Inter-Bold'
+                    )
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child:
+              Expanded(
+                child: Container(
+                  width: screenWidth*0.5,
+                  child: ElevatedButton(
+                    child: Text("Start Sleep",style: TextStyle(fontSize: 24)),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28.0),
+                        ),
+                      ),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
+                    ),
+                    onPressed: (){
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyTimeSetting()),
+                      );
+                      },
+                  ),
+                ),
+              ),
+            ),
+            ]
+        )
       )
     );
   }
