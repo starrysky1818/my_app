@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Page/setting.dart';
+import 'package:my_app/Bottom.dart';
 
 class MyMonitor extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class MyMonitor extends StatelessWidget {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MySetting()),
+                  MaterialPageRoute(builder: (context) => BottomNavigationWidget(index: 1)),
                 );
               },
               child: new Container(

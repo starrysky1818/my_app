@@ -9,7 +9,11 @@ import 'package:my_app/Page/setting.dart';
 
 
 class BottomNavigationWidget extends StatefulWidget {
-  _BottomNavigationWidgetState createState() => _BottomNavigationWidgetState();
+
+  final index;
+  BottomNavigationWidget({Key? key, this.index = 0}) : super(key: key);
+
+  _BottomNavigationWidgetState createState() => _BottomNavigationWidgetState(this.index);
 }
 
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
@@ -17,6 +21,10 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
 
   int _currentIndex = 0;
   List<Widget> list = [];
+
+  _BottomNavigationWidgetState(index) {
+    _currentIndex = index;
+  }
 
   @override
   void initState() {

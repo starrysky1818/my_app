@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Page/homePage.dart';
+import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/searchFriends.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:my_app/Page/user.dart';
@@ -114,7 +114,7 @@ class MyFriends extends StatelessWidget {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomePage()),
+                  MaterialPageRoute(builder: (context) => BottomNavigationWidget()),
                 );
               },
               child: Container(

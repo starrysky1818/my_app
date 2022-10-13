@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
+import 'package:my_app/Bottom.dart';
 
 import '../setting.dart';
 import 'accountPage.dart';
@@ -18,7 +19,7 @@ class SettingProfile extends StatelessWidget {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyAccount()),
+                    MaterialPageRoute(builder: (context) => BottomNavigationWidget(index: 4)),
                   );
                 },
                 child: Container(

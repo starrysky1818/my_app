@@ -13,6 +13,7 @@ class Body extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
+
         ProfilePic(),
         SizedBox(
           height:30,

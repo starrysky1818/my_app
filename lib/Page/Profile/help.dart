@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/Profile/body.dart';
-import 'package:my_app/Page/Profile/accountPage.dart';
+import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
 
 class Help extends StatelessWidget {
@@ -16,7 +16,7 @@ class Help extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyAccount()),
+                      builder: (context) => BottomNavigationWidget(index: 4)),
                 );
               },
               child: Container(

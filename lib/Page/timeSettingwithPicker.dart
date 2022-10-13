@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/Page/setting.dart';
+import 'package:my_app/Bottom.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'dart:async';
 import 'package:get_storage/get_storage.dart';
@@ -20,7 +20,7 @@ class MyTimeSetting extends StatelessWidget {
               onTap: (){
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MySetting()),
+                  MaterialPageRoute(builder: (context) => BottomNavigationWidget(index: 1)),
                 );
               },
               child: Container(

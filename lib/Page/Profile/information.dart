@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Page/Profile/body.dart';
-import 'package:my_app/Page/Profile/accountPage.dart';
+import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:my_app/Page/Profile/Edit.dart';
@@ -23,7 +23,7 @@ class Info extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => MyAccount()),
+                      builder: (context) => BottomNavigationWidget(index: 4)),
                 );
               },
               child: Container(

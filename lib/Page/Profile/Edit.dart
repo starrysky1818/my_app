@@ -102,38 +102,6 @@ class _editPageState extends State<editPage> {
       key: formKey,
       child: Column(
         children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(8),
-            child: TextFormField(
-              autofocus: false,
-              controller: unameController,
-              decoration: InputDecoration(
-                labelText: "Name",
-                hintText: "edit your name",
-                labelStyle: const TextStyle(color: Colors.white),
-                hintStyle: const TextStyle(color: Colors.white),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  borderSide: BorderSide(
-                    color: Colors.cyanAccent,
-                    width: 2.0,
-                  ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  borderSide: BorderSide(
-                    color: Color.fromRGBO(39,69,92,1),
-                    width: 2.0,
-                  ),
-                ),
-              ),
-              style: TextStyle(
-                color: Colors.white70,
-              ),
-              validator: (val)=> (val == null || val.trim().length < 3) ? "User name cannot less than 3": null,
-              onSaved: (val)=> this.username = val!,
-            ),
-          ),
 
           Container(
             padding: EdgeInsets.all(8),
@@ -163,7 +131,6 @@ class _editPageState extends State<editPage> {
               style: TextStyle(
                 color: Colors.white70,
               ),
-              obscureText: true,
               onSaved: (val)=> this.age = val!,
             ),
           ),
@@ -201,7 +168,6 @@ class _editPageState extends State<editPage> {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
                         if(true){
-                          box.write('user', username.toString());
                           String User = box.read('user');
                           box.write(User+'Age', age);
                           box.write(box.read('user')+'Gender', Gender);

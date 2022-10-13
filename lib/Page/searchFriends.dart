@@ -111,6 +111,7 @@
 import 'package:flutter/material.dart';
 import 'friendPage.dart';
 import 'package:my_app/Page/user.dart';
+import 'package:my_app/Bottom.dart';
 
 class searchFriends extends StatefulWidget {
   @override
@@ -129,7 +130,7 @@ class _searchFriends extends State<searchFriends> {
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyFriends()),
+                    MaterialPageRoute(builder: (context) => BottomNavigationWidget(index: 2)),
                   );
                 },
                 child: Container(
