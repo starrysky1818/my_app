@@ -1,114 +1,6 @@
-// class MyFriends extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     double screenWidth = MediaQuery
-//         .of(context)
-//         .size
-//         .width;
-//     //double screenHeight = MediaQuery.of(context).size.height * 0.3;
-//     int searchAccount = 0;
-//     return Scaffold(
-//       body: Column(
-//         mainAxisSize: MainAxisSize.max,
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           SizedBox(height: 10),
-//           Padding(
-//             padding: const EdgeInsets.symmetric(horizontal: 15.0),
-//             child: TextField(
-//               onChanged: (value) {
-//                 setState(() {
-//                   searchAccount = value as int;
-//                 });
-//               },
-//               decoration: InputDecoration(
-//                 labelText: 'Search',
-//                 suffixIcon: Icon(Icons.search),
-//               ),
-//             ),
-//           ),
-//           SizedBox(height: 10),
-//           Expanded(
-//             child: FutureBuilder(
-//               builder: (context, AsyncSnapshot<List<Show>> snapshot) {
-//                 if (snapshot.hasData) {
-//                   return Center(
-//                     child: ListView.separated(
-//                       padding: const EdgeInsets.all(8),
-//                       itemCount: snapshot.data!.length,
-//                       itemBuilder: (BuildContext context, int index) {
-//                         return snapshot.data![index].title
-//                             .contains(searchAccount)
-//                             ? ListTile(
-//                           leading: CircleAvatar(
-//                             backgroundImage: NetworkImage(
-//                                 '${snapshot.data?[index].imageUrl}'),
-//                           ),
-//                           title: Text('${snapshot.data?[index].title}'),
-//                           subtitle: Text(
-//                               'Score: ${snapshot.data?[index].score}'),
-//                         )
-//                             : Container();
-//                       },
-//                       separatorBuilder: (BuildContext context, int index) {
-//                         return snapshot.data![index].title
-//                             .toLowerCase()
-//                             .contains(searchAccount)
-//                             ? Divider()
-//                             : Container();
-//                       },
-//                     ),
-//                   );
-//                 } else if (snapshot.hasError) {
-//                   return Center(child: Text('Something went wrong :('));
-//                 }
-//                 return CircularProgressIndicator();
-//               },
-//               future: shows,
-//             ),
-//           ),
-//         ],
-//       ),
-//       backgroundColor: const Color.fromRGBO(10, 39, 59, 1),
-//     );
-//   }
-// }
-//
-// class Show {
-//   final int malId;
-//   final String title;
-//   final double score;
-//
-//   Show({
-//     required this.malId,
-//     required this.title,
-//     required this.score,
-//   });
-//
-//   factory Show.fromJson(Map<String, dynamic> json) {
-//     return Show(
-//       malId: json['mal_id'],
-//       title: json['title'],
-//       score: json['score'],
-//     );
-//   }
-// }
-//
-// Future<List<Show>> fetchShows() async {
-//   final response =
-//   await http.get(Uri.parse('https://api.jikan.moe/v3/top/anime/1'));
-//
-//   if (response.statusCode == 200) {
-//     var topShowsJson = jsonDecode(response.body)['top'] as List;
-//     return topShowsJson.map((show) => Show.fromJson(show)).toList();
-//   } else {
-//     throw Exception('Failed to load shows');
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:my_app/Page/user.dart';
+import '../notifications_manager.dart';
 import 'friendPage.dart';
 import 'package:my_app/Page/user.dart';
 import 'package:my_app/Bottom.dart';
@@ -182,6 +74,8 @@ class _searchFriends extends State<searchFriends> {
 
   List<User> users = [
     User(name: "Hari Prasad Chaudhary", accNumber: 12345, password: "ss123"),
+    User(name:"Hua Li", accNumber: 25372, password: "ss123"),
+    User(name:"HaHa :)", accNumber: 16463, password: "ss123"),
     User(name:"David Mars", accNumber: 23456, password: "ss123"),
     User(name:"Aurn Thapa", accNumber: 34567, password: "ss123"),
     User(name: "John Bal", accNumber: 45678, password: "ss123")
@@ -194,7 +88,8 @@ class _searchFriends extends State<searchFriends> {
     if(query.isNotEmpty) {
       List<User> dummyListData = <User>[];
       for (var item in users) {
-        if(item.name.contains(query)) {
+        if(item.name.contains(query.toLowerCase())
+            || item.name.contains(query.toUpperCase())) {
           dummyListData.add(item);
         }
       }
@@ -268,6 +163,36 @@ class _searchFriends extends State<searchFriends> {
                     subtitle: Text(
                         '${items[index].accNumber}',
                       style: const TextStyle(color: Colors.lightBlueAccent),
+                    ),
+                    trailing: Wrap(
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.add),
+                          color: Colors.white,
+                          onPressed: () {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Are you sure you want to send a friend request?'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () => {
+                                      Navigator.pop(context, 'YES'),
+                                    },
+                                    child: const Text('YES'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => {
+                                      Navigator.pop(context, 'NO'),
+                                    },
+                                    child: const Text('NO'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   );
                 },
