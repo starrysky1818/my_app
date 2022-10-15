@@ -16,6 +16,7 @@
 - Any IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc)
 - Dart (2.16)
 - Flutter sdk (>=2.17.6 <3.0.0)
+- Emulator (Pixel XL API 27)
 
 ## Plugins
 
@@ -59,4 +60,8 @@ flutter build apk
 ```
 
 ## Examples:
+
+![9](https://github.com/starrysky1818/my_app/blob/master/examples/1.png)
+
+
 
