@@ -10,21 +10,24 @@ import 'package:get_storage/get_storage.dart';
 //const String kSelectRewardInfoList = "selectRewardInfoList";
 
 final box = GetStorage();
-final String kRewardIntegral = box.read('user').toString();
-final String kSelectRewardInfoList = "${box.read('user')}selectRewardInfoList";
+String kRewardIntegral = box.read('user').toString();
+String kSelectRewardInfoList = "${box.read('user')}selectRewardInfoList";
+
 
 class RewardManager extends ChangeNotifier {
 
   static RewardManager? _single;
-  RewardManager._(){
 
+  RewardManager._(){
+    String kRewardIntegral = box.read('user').toString();
+    String kSelectRewardInfoList = "${box.read('user')}selectRewardInfoList";
     //print("kRewardIntegral --- ${SpUtil.getInt(kRewardIntegral)}");
     if(SpUtil.getInt(kRewardIntegral) > 0) {
+
       rewardIntegral = SpUtil.getInt(kRewardIntegral);
     }
     SpUtil.getObjList(kSelectRewardInfoList, (Map data) {
       //print("data === ${data}");
-
       selectRewardInfoList.add(data as Map<String,dynamic>);
     });
   }
@@ -33,9 +36,13 @@ class RewardManager extends ChangeNotifier {
     return _single ??= RewardManager._();
   }
 
-  int rewardIntegral = 50;
-  List<Map<String,dynamic>> selectRewardInfoList = [];
+  static RewardManager restart(){
+    return _single = RewardManager._();
+  }
 
+  int rewardIntegral = 50;
+
+  List<Map<String,dynamic>> selectRewardInfoList = [];
   final StreamController<List> _selectedListController = StreamController<List>.broadcast();
   Stream<List> get selectedListState => _selectedListController.stream;
   StreamSink<List> get selectedListSink => _selectedListController.sink;

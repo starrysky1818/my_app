@@ -11,15 +11,13 @@ class SpUtil {
   static final Lock _lock = Lock();
 
   static Future<SpUtil?> getInstance() async {
-    if (_singleton == null) {
-      await _lock.synchronized(() async {
-        if (_singleton == null) {
-          var singleton = SpUtil._();
-          await singleton._init();
-          _singleton = singleton;
-        }
-    });
-    }
+
+    await _lock.synchronized(() async {
+        var singleton = SpUtil._();
+        await singleton._init();
+        _singleton = singleton;
+      }
+    );
     return _singleton;
   }
 
