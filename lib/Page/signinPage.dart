@@ -195,9 +195,11 @@ class _SigninHomePageState extends State<SigninHomePage> {
                     onPressed: () async {
                       if(_validateAndSaveForm()){
                         formKey.currentState!.save();
-                        response = await dio.get('http://172.20.10.2:8080/user/signUpCheck', queryParameters: {'password': password,
-                          'userName': username});
-                        if(response.data){
+                        // connect to back-end
+                        //response = await dio.get('http://172.20.10.2:8080/user/signUpCheck', queryParameters: {'password': password,
+                        //  'userName': username});
+                        // if do not have back-end, change if loop conditions to true
+                        if(true/*response.data*/){
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(

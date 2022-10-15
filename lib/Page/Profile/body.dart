@@ -4,6 +4,9 @@ import 'package:my_app/Page/Profile/information.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
 import 'package:my_app/Page/Profile/settingProfile.dart';
 import 'package:my_app/Page/loginPage.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:my_app/Page/reward/application.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../setting.dart';
 
@@ -198,7 +201,7 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(width: 175),
                 GestureDetector(
-                    onTap: (){
+                    onTap: () async {
                       Navigator.push(
                         context,
                         // change !!!
