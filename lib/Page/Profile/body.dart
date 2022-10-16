@@ -4,7 +4,12 @@ import 'package:my_app/Page/Profile/information.dart';
 import 'package:my_app/Page/Profile/profile_pic.dart';
 import 'package:my_app/Page/Profile/settingProfile.dart';
 import 'package:my_app/Page/loginPage.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:my_app/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../reward/application.dart';
+import '../reward/reward_manager.dart';
 import '../setting.dart';
 
 class Body extends StatelessWidget {
@@ -198,12 +203,11 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(width: 175),
                 GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        // change !!!
-                        MaterialPageRoute(builder: (context) => LoginHomePage()),
-                      );
+                    onTap: () async {
+                      WidgetsFlutterBinding.ensureInitialized();
+                      await Application.initAppSetup();
+                      await GetStorage.init();
+                      RestartWidget.restartApp(context);
                     },
                     child: Container(
                       //width: screenWidth,

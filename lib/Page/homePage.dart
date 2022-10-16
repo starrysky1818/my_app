@@ -100,7 +100,7 @@ class _DraggableCardState extends State<DraggableCard>
 }
 
 
-class _MyHomePage extends StatelessWidget {
+class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +113,7 @@ class _MyHomePage extends StatelessWidget {
         alignment: Alignment.center,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/home.png'),
+            image: AssetImage('images/home_without_star.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -122,7 +122,24 @@ class _MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
             Container(
-              height: screenHeight*0.65,
+              height: screenHeight*0.08,
+                child: Row (
+                  children: <Widget>[
+                    Container(
+                      width: screenWidth*0.2,
+                      decoration: const BoxDecoration(
+                        color: const Color.fromRGBO(10,39,59,1),
+                        image: DecorationImage(
+                          image: AssetImage('images/Logo.png'),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+            ),
+            Container(
+              height: screenHeight*0.60,
               child: DraggableCard(
                 child: GestureDetector(
                   onDoubleTap: (){
@@ -132,35 +149,28 @@ class _MyHomePage extends StatelessWidget {
                     );
                   },
                   child: Container (
-                    height:screenHeight*0.25,
-                    width: screenWidth*0.60,
+                    height:screenHeight*0.5,
+                    width: screenWidth*0.8,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(
                       color: const Color.fromRGBO(10,39,59,1),
                       image: DecorationImage(
-                        image: AssetImage('images/plant.png'),
-                        fit: BoxFit.contain,
+                        image: AssetImage('images/cartoon-planet.png'),
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
-                    child: const Text('Enter your planet',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black54,
-                            fontFamily: 'Inter-Bold'
-                        )
                     ),
                   ),
                 ),
               ),
-            ),
-
             Padding(
               padding: EdgeInsets.fromLTRB(screenWidth*0.25,10.0,screenWidth*0.25,10),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Expanded(
                     child: Container(
+
                       width: screenWidth*0.5,
                       child: ElevatedButton(
                         child: Text("Start Sleep",style: TextStyle(fontSize: 24)),
@@ -171,7 +181,7 @@ class _MyHomePage extends StatelessWidget {
                             ),
                           ),
                           foregroundColor: MaterialStateProperty.all(Colors.white),
-                          backgroundColor: MaterialStateProperty.all(Colors.blue),
+                          backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
                           padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
                         ),
                         onPressed: (){
@@ -183,115 +193,12 @@ class _MyHomePage extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
 
             ),
             ]
         )
       )
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-        body: Container(
-            width: screenWidth,
-            height: screenHeight,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/home.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Column (
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget> [
-                  Container(
-                    height: screenHeight*0.65,
-                    child: DraggableCard(
-                      child: GestureDetector(
-                        onDoubleTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SleepPlanteHomePage()),
-                          );
-                        },
-                        child: Container (
-                          height:screenHeight*0.50,
-                          width: screenWidth*0.65,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: const Color.fromRGBO(10,39,59,1),
-                                width: 1,
-                              ),
-                            color: const Color.fromRGBO(10,39,59,1),
-                            image: const DecorationImage(
-                              image: AssetImage('images/cartoon-planet.png'),
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                          child: Column(
-                            children: const [
-                              SizedBox(height: 320),
-                            Text(
-                            'Click To Enter Your Planet',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.greenAccent,
-                                fontFamily: 'Inter-Bold'
-                            ),
-                            ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth*0.25,0,screenWidth*0.25,10),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              width: screenWidth*0.5,
-                              child: ElevatedButton(
-                                child: Text("Start Sleep",style: TextStyle(fontSize: 24)),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(28.0),
-                                    ),
-                                  ),
-                                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                                  backgroundColor: MaterialStateProperty.all(Colors.blueAccent),
-                                  padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
-                                ),
-                                onPressed: (){
-                                  Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => MyTimeSetting()),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-
-                  ),
-                ]
-            )
-        )
     );
   }
 }

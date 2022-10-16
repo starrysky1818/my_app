@@ -32,7 +32,7 @@ class Application {
 
   // Configure the screen adaptation tool
   static configScreenUtil(BuildContext context)  {
-    print("configScreenUtil");
+    //print("configScreenUtil");
     ToastContext().init(context);
     ScreenUtil.init(context,designSize: Size(750, 1334));
     final size = MediaQuery

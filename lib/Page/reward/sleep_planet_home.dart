@@ -30,6 +30,7 @@ class _SleepPlanteHomePageState extends State<SleepPlanteHomePage> {
   @override
   void initState() {
     // TODO: implement initState
+    RewardManager.restart();
     Future.delayed(Duration.zero, () {
       //在这里处理页面
       setState(() {
@@ -182,7 +183,7 @@ class _SleepPlanteHomePageState extends State<SleepPlanteHomePage> {
                   stream: RewardManager.instance().selectedListState,
                   initialData: RewardManager.instance().selectRewardInfoList,
                   builder: (checkedContext, selceted) {
-                    print("selceted ==  ${selceted}");
+                    //print("selceted ==  ${selceted}");
                     if (selceted.data!.isNotEmpty) {
                       return Stack(
                         key: stackKey,
