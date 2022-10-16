@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Bottom.dart';
 import 'package:my_app/Page/searchFriends.dart';
-//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:my_app/Page/user.dart';
 import 'package:my_app/notifications_manager.dart';
-//import 'package:timezone/timezone.dart' as tz;
-//import 'package:timezone/data/latest.dart' as tzData;
-
 
 class MyFriends extends StatelessWidget {
   List<User> friends = [
@@ -33,32 +29,17 @@ class MyFriends extends StatelessWidget {
                          ),
                          trailing: Wrap(
                            children :<Widget> [
-                             // ElevatedButton(
-                             //   onPressed: () {},
-                             //   style: ElevatedButton.styleFrom(
-                             //     padding: const EdgeInsets.fromLTRB(25.0, 12.0, 25.0, 12.0),
-                             //     shape: const StadiumBorder(),
-                             //     primary: Colors.blueGrey,
-                             //     textStyle: const TextStyle(
-                             //       fontSize: 18.0,
-                             //       color: Colors.white,
-                             //     ),
-                             //   ),
-                             //   child: const Text('Visit'),
-                             // ),
-
-
                              Padding(
                                padding: const EdgeInsets.only(left: 6),
                                child:ElevatedButton(
                                  onPressed: () {
                                    DateTime dateTime= DateTime.now();
                                    String time = dateTime.hour.toString() + ':' + (dateTime.minute+1).toString();
-                                   notification.send("Notification", "Message successfully send :)", time);
+                                   notification.send("Notification", "Your message has been sent :)", time);
                                    showDialog<String>(
                                      context: context,
                                      builder: (BuildContext context) => AlertDialog(
-                                       title: const Text('Your message has been sent'),
+                                       title: const Text('Your message has been sent : )'),
                                        actions: <Widget>[
                                          TextButton(
                                            onPressed: () => {

@@ -75,7 +75,7 @@ class _searchFriends extends State<searchFriends> {
   List<User> users = [
     User(name: "Hari Prasad Chaudhary", accNumber: 12345, password: "ss123"),
     User(name:"Hua Li", accNumber: 25372, password: "ss123"),
-    User(name:"HaHa :)", accNumber: 16463, password: "ss123"),
+    User(name:"HaHa123 :)", accNumber: 16463, password: "ss123"),
     User(name:"David Mars", accNumber: 23456, password: "ss123"),
     User(name:"Aurn Thapa", accNumber: 34567, password: "ss123"),
     User(name: "John Bal", accNumber: 45678, password: "ss123")
@@ -83,8 +83,6 @@ class _searchFriends extends State<searchFriends> {
   List<User> items = <User>[];
 
   void filterSearchResults(String query) {
-    //List<String> dummySearchList = <String>[];
-    //dummySearchList.addAll(users);
     if(query.isNotEmpty) {
       List<User> dummyListData = <User>[];
       for (var item in users) {
@@ -117,7 +115,6 @@ class _searchFriends extends State<searchFriends> {
       child: Column(
         children: <Widget>[
           TextFormField(
-            //autofocus: false,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             controller: uAccController,
@@ -143,6 +140,7 @@ class _searchFriends extends State<searchFriends> {
               ),
             ),
             onChanged: (value) {
+              value = value.toString();
               filterSearchResults(value);
             },
           ),
