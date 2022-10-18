@@ -117,7 +117,6 @@ class _LoginHomePageState extends State<LoginHomePage> {
             child: TextFormField(
               autofocus: false,
               controller: pwdController,
-              keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
                 labelText: "Password",
                 hintText: "Your Password",
