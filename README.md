@@ -41,6 +41,14 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter development, view the [online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on mobile development, and a full API reference.
 
+## Run app on Emulator
+
+1. Open Andriod Studio
+2. Click open project
+3. Start a emulator
+4. run Get dependencies
+5. Run lib/main.dart
+
 ## Run the app on your phone
 
 IOS:
@@ -59,22 +67,24 @@ Android:
 flutter build apk
 ```
 
+The app is on the path: build/app/outputs/flutter-apk/app-release.apk
+
 ## Examples:
 
-![1](https://github.com/starrysky1818/my_app/blob/master/examples/1.png)
-
-![2](https://github.com/starrysky1818/my_app/blob/master/examples/2.png)
-
-![3](https://github.com/starrysky1818/my_app/blob/master/examples/3.png)
-
-![4](https://github.com/starrysky1818/my_app/blob/master/examples/4.png)
-
-![5](https://github.com/starrysky1818/my_app/blob/master/examples/5.png)
-
-![6](https://github.com/starrysky1818/my_app/blob/master/examples/6.png)
-
-![7](https://github.com/starrysky1818/my_app/blob/master/examples/7.png)
+![9](https://github.com/starrysky1818/my_app/blob/master/examples/9.png)
 
 ![8](https://github.com/starrysky1818/my_app/blob/master/examples/8.png)
 
-![9](https://github.com/starrysky1818/my_app/blob/master/examples/9.png)
+![7](https://github.com/starrysky1818/my_app/blob/master/examples/7.png)
+
+![6](https://github.com/starrysky1818/my_app/blob/master/examples/6.png)
+
+![5](https://github.com/starrysky1818/my_app/blob/master/examples/5.png)
+
+![4](https://github.com/starrysky1818/my_app/blob/master/examples/4.png)
+
+![3](https://github.com/starrysky1818/my_app/blob/master/examples/3.png)
+
+![2](https://github.com/starrysky1818/my_app/blob/master/examples/2.png)
+
+![1](https://github.com/starrysky1818/my_app/blob/master/examples/1.png)
