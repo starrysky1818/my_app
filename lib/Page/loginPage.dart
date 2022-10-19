@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/Bottom.dart';
 import 'package:dio/dio.dart';
+import 'package:my_app/Page/Profile/Edit.dart';
 import 'package:my_app/Page/signinPage.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -67,6 +68,18 @@ class _LoginHomePageState extends State<LoginHomePage> {
       return true;
     }
     return false;
+  }
+
+  bool checkLogIn() {
+    String ?user = box.read(username+'Name');
+    if (user == null){
+      return false;
+    }
+    if (user?.compareTo(pwdController.text)==0){
+      return true;
+    } else{
+      return false;
+    }
   }
 
   Widget buildForm() {
@@ -172,7 +185,7 @@ class _LoginHomePageState extends State<LoginHomePage> {
                         // response = await dio.get('http://172.20.10.2:8080/user/logInCheck', queryParameters: {'password': password,
                         //  'userName': username});
                         // if do not have back-end, change if loop conditions to true
-                        if(/*response.data*/true){
+                        if(/* response.data */checkLogIn()){
                           box.write('user', username.toString());
                           box.write(username.toString()+'Age', 'Secret');
                           box.write(username.toString()+'Gender', 'Secret');

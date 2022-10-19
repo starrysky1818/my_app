@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:my_app/Page/loginPage.dart';
 import 'package:dio/dio.dart';
 
@@ -10,6 +11,7 @@ class SigninHomePage extends StatefulWidget {
 class _SigninHomePageState extends State<SigninHomePage> {
   late double screenWidth;
   late double screenHeight;
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -56,6 +58,7 @@ class _SigninHomePageState extends State<SigninHomePage> {
   String password = "";
   late Response response;
   Dio dio = Dio();
+  final GetStorage box = GetStorage();
 
   bool _validateAndSaveForm() {
     final form = formKey.currentState!;
@@ -63,6 +66,16 @@ class _SigninHomePageState extends State<SigninHomePage> {
       return true;
     }
     return false;
+  }
+
+  bool checkSignIn() {
+    String ?user = box.read(username+'Name');
+    if (user != null){
+      print(user);
+      return false;
+    }
+    box.write(username+'Name', password);
+    return true;
   }
 
   Widget buildForm() {
@@ -199,7 +212,7 @@ class _SigninHomePageState extends State<SigninHomePage> {
                         // response = await dio.get('http://172.20.10.2:8080/user/signUpCheck', queryParameters: {'password': password,
                         //  'userName': username});
                         // if do not have back-end, change if loop conditions to true
-                        if(true/*response.data*/){
+                        if(/* response.data */checkSignIn()){
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
@@ -222,7 +235,7 @@ class _SigninHomePageState extends State<SigninHomePage> {
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
                               title: const Text('Failed to Sign up'),
-                              content: const Text('Please check your account and password'),
+                              content: const Text('Name has been used'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () => Navigator.pop(context, 'OK'),
